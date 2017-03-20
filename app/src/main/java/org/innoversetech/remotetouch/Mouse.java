@@ -88,9 +88,27 @@ public class Mouse extends AppCompatActivity implements View.OnClickListener {
 
 
     }
+    //TODO Create Menu.xml resource file
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu){
+    //to inflate the menu, and adds it to the actionbar
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
 
     @Override
     public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.leftClick:
+                if(isConnected && out != null){
+                    out.println(SyncStateContract.Constants.MOUSE_LEFT_CLICK);
+                }
+                break;
+            case R.id.rightClick:
+                if(isConnected && out != null){
+                    out.println(SyncStateContract.Constants.MOUSE_RIGHT_CLICK);
+                }
+        }
 
     }
 }
