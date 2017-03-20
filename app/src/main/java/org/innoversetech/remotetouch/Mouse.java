@@ -23,6 +23,9 @@ import java.net.InetAddress;
 import java.net.Socket;
 
 
+//TODO Add more comments
+//TODO Add server functionality
+
 public class Mouse extends AppCompatActivity implements View.OnClickListener {
     //For Layout stuff
     Context context;
