@@ -3,11 +3,13 @@ package org.innoversetech.remotetouch;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.provider.SyncStateContract;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
@@ -26,9 +28,9 @@ import java.net.Socket;
 //TODO Add more comments
 //TODO Add server functionality
 
-public class Mouse extends AppCompatActivity implements View.OnClickListener {
-    //For Layout stuff
+public class Mouse extends ActionBarActivity implements View.OnClickListener {
     Context context;
+    //For Layout stuff
     Button mRbutton;
     Button mLbutton;
     TextView scrollView;
@@ -78,11 +80,11 @@ public class Mouse extends AppCompatActivity implements View.OnClickListener {
                             }
                             mouseMoved = true;
                             break;
-//                        case MotionEvent.ACTION_UP:
-//                            //for only a single tap
-//                            if (!mouseMoved) {
-//                                out.println(SyncStateContract.Constants.MOUSE_LEFT_BUTTON);
-//                            }
+                        case MotionEvent.ACTION_UP:
+                            //for only a single tap
+                            if (!mouseMoved) {
+                                out.println(Constants.MOUSE_LEFT_CLICK);
+                            }
                     }
                 }
                 return true;
@@ -91,27 +93,85 @@ public class Mouse extends AppCompatActivity implements View.OnClickListener {
 
 
     }
-    //TODO Create Menu.xml resource file
     @Override
     public boolean onCreateOptionsMenu(Menu menu){
     //to inflate the menu, and adds it to the actionbar
-        getMenuInflater().inflate(R.menu.menu_main, menu);
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_main, menu);
         return true;
     }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item){
+        int id = item.getItemId();
+        if(id== R.id.action_connect){
+            ConnectPhone connectPhone = new ConnectPhone();
+            connectPhone.execute(Constants.SERVER_IP);//Connect with server
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
 
     @Override
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.leftClick:
                 if(isConnected && out != null){
-                    out.println(SyncStateContract.Constants.MOUSE_LEFT_CLICK);
+                    out.println(Constants.MOUSE_LEFT_CLICK);
                 }
                 break;
             case R.id.rightClick:
                 if(isConnected && out != null){
-                    out.println(SyncStateContract.Constants.MOUSE_RIGHT_CLICK);
+                    out.println(Constants.MOUSE_RIGHT_CLICK);
                 }
         }
 
     }
+    public void onDestroy(){
+        super.onDestroy();
+        if(isConnected && out!=null){
+            try{
+                out.println("exit");//Exit the server
+                socket.close();//close the socket
+            }catch(IOException e){
+                Log.e("APP", "Error in closing the socket", e);
+            }
+        }
+
+    }
+
+    public class ConnectPhone extends AsyncTask<String, Void, Boolean>{
+
+        @Override
+        protected Boolean doInBackground(String... params) {
+            boolean result = true;
+            try{
+                InetAddress serverAdrs = InetAddress.getByName(params[0]);
+                socket = new Socket(serverAdrs, Constants.SERVER_PORT);
+            }catch(IOException e){
+                Log.e("Connection", "Error while connecting", e);
+                result = false;
+            }
+            return result;
+        }
+
+        @Override
+        protected void onPostExecute(Boolean result){
+            isConnected = result;
+            Toast.makeText(context, isConnected?"Connected" : "Unable to connect", Toast.LENGTH_SHORT).show();
+            try{
+                if(isConnected){
+                    //Stream to send data to server
+                    out = new PrintWriter(new BufferedWriter(new OutputStreamWriter(socket.getOutputStream())), true);
+                }
+            }catch(IOException e){
+                Log.e("AppIssues", "Unable to create outwriter", e);
+                Toast.makeText(context, "Error while connecting", Toast.LENGTH_LONG).show();
+            }
+        }
+
+    }
+
 }
