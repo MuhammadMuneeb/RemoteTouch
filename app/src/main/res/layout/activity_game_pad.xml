@@ -1,9 +1,81 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="org.innoversetech.remotetouch.GamePad">
+    android:id="@+id/rootRL">
 
-</android.support.constraint.ConstraintLayout>
+
+    <Button
+        android:id="@+id/but1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Button"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="64dp"
+        android:layout_marginTop="18dp" />
+
+    <Button
+        android:id="@+id/but2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/but1"
+        android:layout_marginStart="48dp"
+        android:layout_toEndOf="@+id/but1"
+        android:text="Button" />
+
+    <Button
+        android:id="@+id/but3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/but1"
+        android:layout_below="@+id/but1"
+        android:layout_marginTop="14dp"
+        android:text="Button" />
+
+    <Button
+        android:id="@+id/but4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/but2"
+        android:layout_alignTop="@+id/but3"
+        android:text="Button" />
+
+    <Button
+        android:id="@+id/up"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignStart="@+id/but3"
+        android:layout_marginBottom="161dp"
+        android:layout_marginStart="61dp"
+        android:text="Up" />
+
+    <Button
+        android:id="@+id/left"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignTop="@+id/up"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="54dp"
+        android:text="Left" />
+
+    <Button
+        android:id="@+id/right"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/left"
+        android:layout_toEndOf="@+id/up"
+        android:text="Right" />
+
+    <Button
+        android:id="@+id/Down"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/right"
+        android:layout_toStartOf="@+id/right"
+        android:text="Down" />
+
+</RelativeLayout>

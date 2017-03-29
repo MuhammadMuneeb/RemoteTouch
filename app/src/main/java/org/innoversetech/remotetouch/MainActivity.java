@@ -18,6 +18,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mouse = (Button)findViewById(R.id.Mouse);
         qrCode = (Button)findViewById(R.id.qrCode);
         mouse.setOnClickListener(this);
+        qrCode.setOnClickListener(this);
     }
 
     @Override

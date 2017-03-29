@@ -27,7 +27,6 @@ import java.net.Socket;
 
 
 //TODO Add more comments
-//TODO Add server functionality
 
 public class Mouse extends ActionBarActivity implements View.OnClickListener {
     Context context;
