@@ -2,7 +2,7 @@ package org.innoversetech.remotetouch;
 
 
 public class Constants {
-    public static final String SERVER_IP = "192.168.1.23";
+    public static final String SERVER_IP = "192.168.1.6";
     public static final int SERVER_PORT = 8998;
 
     //For mouse
@@ -94,12 +94,12 @@ public class Constants {
     public static final String key_sqBrackClose= "!";
     public static final String key_curlyBrackOp= "!";
     public static final String key_curlyBrackClose= "!";
-    public static final String key_leftSlash= "!";
-    public static final String key_StickThing= "!";
+    public static final String key_backSlash= "BackSlash";
+    public static final String key_StickThing= "|";
     public static final String key_semicolon= "!";
     public static final String key_colon= "!";
     public static final String key_quote= "!";
-    public static final String key_edblQuote= "!";
+    public static final String key_dblQuote= "!";
     public static final String key_comma= "!";
     public static final String key_openTag= "!";
     public static final String key_period= "!";
@@ -108,4 +108,5 @@ public class Constants {
     public static final String key_question= "!";
     public static final String key_enter= "!";
     public static final String key_back= "!";
+    public static final String space ="Space";
 }

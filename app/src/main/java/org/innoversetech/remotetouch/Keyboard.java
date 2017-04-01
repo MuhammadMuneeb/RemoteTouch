@@ -318,6 +318,180 @@ public class Keyboard extends ActionBarActivity implements View.OnClickListener 
                        System.out.println("m here");
                    }
                    return true;
+
+               case KeyEvent.KEYCODE_0:
+                   if(event.isShiftPressed()){
+                       out.println(Constants.key_brackClose);
+                   }
+                   else{
+                       out.println(Constants.key_0);
+                   }
+                   return true;
+               case KeyEvent.KEYCODE_1:
+                   if(event.isShiftPressed()){
+                       out.println(Constants.key_excl);
+                   }
+                   else {
+                       out.println(Constants.key_1);
+                       System.out.println("1 HERE");
+                   }
+                        return true;
+               case KeyEvent.KEYCODE_2:
+                   out.println(Constants.key_2);
+                   System.out.println("2 HERE");
+                   return true;
+               case KeyEvent.KEYCODE_3:
+                   out.println(Constants.key_3);
+                   System.out.println("3 HERE");
+                   return true;
+               case KeyEvent.KEYCODE_4:
+                   if(event.isShiftPressed()){
+                       out.println(Constants.key_dollar);
+                       System.out.println("Dollar here");
+                   }
+                   else{
+                   out.println(Constants.key_4);
+                   System.out.println("4 HERE");}
+                   return true;
+               case KeyEvent.KEYCODE_5:
+                   if(event.isShiftPressed()){
+                       out.println(Constants.key_prcnt);
+                       System.out.println("% here");
+                   }
+                   else{
+                       out.println(Constants.key_5);
+                       System.out.println("5 HERE");
+                   }
+                   return true;
+               case KeyEvent.KEYCODE_6:
+                   if(event.isShiftPressed()){
+                       out.println(Constants.key_cap);
+                       System.out.println("^ here");
+                   }
+                   else{
+                       out.println(Constants.key_6);
+                       System.out.println("4 HERE");
+                   }
+                   return true;
+               case KeyEvent.KEYCODE_7:
+                if(event.isShiftPressed()){
+                    out.println(Constants.key_amp);
+                }
+                   else{
+                   out.println(Constants.key_7);
+                   System.out.println("7 HERE");
+               }
+                   return true;
+               case KeyEvent.KEYCODE_8:
+                   out.println(Constants.key_8);
+                   System.out.println("8 HERE");
+                   return true;
+               case KeyEvent.KEYCODE_9:
+                   out.println(Constants.key_9);
+                   System.out.println("9 HERE");
+                   return true;
+               //Special characters like space etc
+               case KeyEvent.KEYCODE_SPACE:
+                   out.println(Constants.space);
+                   return true;
+               case KeyEvent.KEYCODE_ENTER:
+                   out.println(Constants.key_enter);
+                   return true;
+               case KeyEvent.KEYCODE_DEL:
+                   out.println(Constants.key_back);
+                   return true;
+               case KeyEvent.KEYCODE_MINUS:
+                   if(event.isShiftPressed()){
+                       out.println(Constants.key_underscore);
+                   }
+                   else{
+                       out.println(Constants.key_minus);
+                   }
+                   return true;
+               case KeyEvent.KEYCODE_EQUALS:
+                   if(event.isShiftPressed()){
+                       out.println(Constants.key_plus);
+                   }
+                   else{
+                       out.println(Constants.key_equals);
+                   }
+                   return true;
+               case KeyEvent.KEYCODE_LEFT_BRACKET:
+                   if(event.isShiftPressed()){
+                       out.println(Constants.key_curlyBrackOp);
+                   }
+                   else{
+                       out.println(Constants.key_sqBrackOP);
+                   }
+                   return true;
+               case KeyEvent.KEYCODE_RIGHT_BRACKET:
+                   if(event.isShiftPressed()){
+                       out.println(Constants.key_curlyBrackClose);
+                   }
+                   else{
+                       out.println(Constants.key_sqBrackClose);
+                   }
+                   return true;
+               case KeyEvent.KEYCODE_BACKSLASH:
+                   if(event.isShiftPressed()){
+                       out.println(Constants.key_StickThing);
+                   }
+                   else{
+                       out.println(Constants.key_backSlash);
+                   }
+                   return true;
+               case KeyEvent.KEYCODE_SEMICOLON:
+                   if(event.isShiftPressed()){
+                       out.println(Constants.key_semicolon);
+                   }
+                   else{
+                       out.println(Constants.key_colon);
+                   }
+                   return true;
+               case KeyEvent.KEYCODE_APOSTROPHE:
+                   if(event.isShiftPressed()){
+                       out.println(Constants.key_dblQuote);
+                   }
+                   else{
+                       out.println(Constants.key_quote);
+                   }
+                   return true;
+               case KeyEvent.KEYCODE_COMMA:
+                   if(event.isShiftPressed()){
+                       out.println(Constants.key_openTag);
+                   }
+                   else{
+                       out.println(Constants.key_comma);
+                   }
+                   return true;
+               case KeyEvent.KEYCODE_PERIOD:
+                   if(event.isShiftPressed()){
+                       out.println(Constants.key_closeTag);
+                   }
+                   else{
+                       out.println(Constants.key_period);
+                   }
+                   return true;
+               case KeyEvent.KEYCODE_SLASH:
+                   if(event.isShiftPressed()){
+                       out.println(Constants.key_rightSlash);
+                   }
+                   else{
+                       out.println(Constants.key_question);
+                   }
+                   return true;
+               case KeyEvent.KEYCODE_AT:
+                   out.println(Constants.key_at);
+                   return true;
+               case KeyEvent.KEYCODE_POUND:
+                   out.println(Constants.key_hash);
+                   return true;
+               case KeyEvent.KEYCODE_STAR:
+                   out.println(Constants.key_asterisk);
+                   return true;
+               case KeyEvent.KEYCODE_GRAVE:
+                   out.println(Constants.key_tildApostrophe);
+                   return true;
                default:
                     return super.onKeyUp(keyCode, event);
             }
