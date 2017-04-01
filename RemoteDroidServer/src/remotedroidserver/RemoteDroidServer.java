@@ -63,109 +63,352 @@ public class RemoteDroidServer {
 			System.out.println(line); //print whatever we get from client
 			
 			//Keyboard functions
+                        
+                        //small alphabets
 			if(line.equalsIgnoreCase("q")){
-				//Simulate press and release of key 'n'
+				//Simulate press and release of key 'q'
 				robot.keyPress(KeyEvent.VK_Q);
 				robot.keyRelease(KeyEvent.VK_Q);
 			}
-			else if(line.equalsIgnoreCase("Q_caps")){
-				//Simulate press and release of key 'p'
-				robot.keyPress(KeyEvent.VK_SHIFT);
-                                robot.keyPress(KeyEvent.VK_Q);
-				
-                                robot.keyRelease(KeyEvent.VK_Q);
-                                robot.keyRelease(KeyEvent.VK_SHIFT);
-                                
-                        }
+			
 			else if(line.equalsIgnoreCase("w")){
-				//Simulate press and release of key 'p'
+				//Simulate press and release of key 'w'
 				robot.keyPress(KeyEvent.VK_W);
 				robot.keyRelease(KeyEvent.VK_W);		        	
 			}
                         else if(line.equalsIgnoreCase("e")){
-				//Simulate press and release of key 'p'
+				//Simulate press and release of key 'e'
 				robot.keyPress(KeyEvent.VK_E);
 				robot.keyRelease(KeyEvent.VK_E);		        	
 			}
                         else if(line.equalsIgnoreCase("r")){
-				//Simulate press and release of key 'p'
+				//Simulate press and release of key 'r'
 				robot.keyPress(KeyEvent.VK_R);
 				robot.keyRelease(KeyEvent.VK_R);		        	
 			}
                         else if(line.equalsIgnoreCase("t")){
-				//Simulate press and release of key 'p'
+				//Simulate press and release of key 't'
 				robot.keyPress(KeyEvent.VK_T);
 				robot.keyRelease(KeyEvent.VK_T);		        	
 			}
                         else if(line.equalsIgnoreCase("y")){
-				//Simulate press and release of key 'p'
+				//Simulate press and release of key 'y'
 				robot.keyPress(KeyEvent.VK_Y);
 				robot.keyRelease(KeyEvent.VK_Y);		        	
 			}
-                        else if(line.equalsIgnoreCase("a")){
+                        else if(line.equalsIgnoreCase("u")){
+				//Simulate press and release of key 'u'
+				robot.keyPress(KeyEvent.VK_U);
+				robot.keyRelease(KeyEvent.VK_U);		        	
+			}
+                        else if(line.equalsIgnoreCase("i")){
+				//Simulate press and release of key 'i'
+				robot.keyPress(KeyEvent.VK_I);
+				robot.keyRelease(KeyEvent.VK_I);		        	
+			}
+                        else if(line.equalsIgnoreCase("o")){
+				//Simulate press and release of key 'o'
+				robot.keyPress(KeyEvent.VK_O);
+				robot.keyRelease(KeyEvent.VK_O);		        	
+			}
+                        else if(line.equalsIgnoreCase("p")){
 				//Simulate press and release of key 'p'
+				robot.keyPress(KeyEvent.VK_P);
+				robot.keyRelease(KeyEvent.VK_P);		        	
+			}
+                        else if(line.equalsIgnoreCase("a")){
+				//Simulate press and release of key 'a'
 				robot.keyPress(KeyEvent.VK_A);
 				robot.keyRelease(KeyEvent.VK_A);		        	
 			}
                         else if(line.equalsIgnoreCase("s")){
-				//Simulate press and release of key 'p'
+				//Simulate press and release of key 's'
 				robot.keyPress(KeyEvent.VK_S);
 				robot.keyRelease(KeyEvent.VK_S);		        	
 			}
                         else if(line.equalsIgnoreCase("d")){
-				//Simulate press and release of key 'p'
+				//Simulate press and release of key 'd'
 				robot.keyPress(KeyEvent.VK_D);
 				robot.keyRelease(KeyEvent.VK_D);		        	
 			}else if(line.equalsIgnoreCase("f")){
-				//Simulate press and release of key 'p'
+				//Simulate press and release of key 'f'
 				robot.keyPress(KeyEvent.VK_F);
 				robot.keyRelease(KeyEvent.VK_F);		        	
 			}else if(line.equalsIgnoreCase("g")){
-				//Simulate press and release of key 'p'
+				//Simulate press and release of key 'g'
 				robot.keyPress(KeyEvent.VK_G);
 				robot.keyRelease(KeyEvent.VK_G);		        	
 			}else if(line.equalsIgnoreCase("h")){
-				//Simulate press and release of key 'p'
+				//Simulate press and release of key 'h'
 				robot.keyPress(KeyEvent.VK_H);
 				robot.keyRelease(KeyEvent.VK_H);		        	
 			}else if(line.equalsIgnoreCase("j")){
-				//Simulate press and release of key 'p'
+				//Simulate press and release of key 'j'
 				robot.keyPress(KeyEvent.VK_J);
-				robot.keyRelease(KeyEvent.VK_J);		        	
-			}else if(line.equalsIgnoreCase("l")){
-				//Simulate press and release of key 'p'
+				robot.keyRelease(KeyEvent.VK_J);
+                                }
+                        else if(line.equalsIgnoreCase("k")){
+				//Simulate press and release of key 'k'
+				robot.keyPress(KeyEvent.VK_K);
+				robot.keyRelease(KeyEvent.VK_K);		        	
+			}
+                        else if(line.equalsIgnoreCase("l")){
+				//Simulate press and release of key 'l'
 				robot.keyPress(KeyEvent.VK_L);
 				robot.keyRelease(KeyEvent.VK_L);		        	
 			}else if(line.equalsIgnoreCase("z")){
-				//Simulate press and release of key 'p'
+				//Simulate press and release of key 'z'
 				robot.keyPress(KeyEvent.VK_Z);
 				robot.keyRelease(KeyEvent.VK_Z);		        	
 			}else if(line.equalsIgnoreCase("x")){
-				//Simulate press and release of key 'p'
+				//Simulate press and release of key 'x'
 				robot.keyPress(KeyEvent.VK_X);
 				robot.keyRelease(KeyEvent.VK_X);		        	
 			}else if(line.equalsIgnoreCase("c")){
-				//Simulate press and release of key 'p'
+				//Simulate press and release of key 'c'
 				robot.keyPress(KeyEvent.VK_C);
 				robot.keyRelease(KeyEvent.VK_C);		        	
 			}else if(line.equalsIgnoreCase("v")){
-				//Simulate press and release of key 'p'
+				//Simulate press and release of key 'v'
 				robot.keyPress(KeyEvent.VK_V);
 				robot.keyRelease(KeyEvent.VK_V);		        	
 			}else if(line.equalsIgnoreCase("b")){
-				//Simulate press and release of key 'p'
+				//Simulate press and release of key 'b'
 				robot.keyPress(KeyEvent.VK_B);
 				robot.keyRelease(KeyEvent.VK_B);		        	
 			}else if(line.equalsIgnoreCase("n")){
-				//Simulate press and release of key 'p'
+				//Simulate press and release of key 'n'
 				robot.keyPress(KeyEvent.VK_N);
 				robot.keyRelease(KeyEvent.VK_N);		        	
 			}else if(line.equalsIgnoreCase("m")){
-				//Simulate press and release of key 'p'
+				//Simulate press and release of key 'm'
 				robot.keyPress(KeyEvent.VK_M);
 				robot.keyRelease(KeyEvent.VK_M);		        	
 			}
-                        
+                        //Uppercase
+                        else if(line.equalsIgnoreCase("W_caps")){
+				
+                                robot.keyPress(KeyEvent.VK_SHIFT);
+				robot.keyPress(KeyEvent.VK_W);
+				robot.keyRelease(KeyEvent.VK_W);
+                                robot.keyRelease(KeyEvent.VK_SHIFT);
+			}
+                        else if(line.equalsIgnoreCase("E_caps")){
+				
+                                robot.keyPress(KeyEvent.VK_SHIFT);
+				robot.keyPress(KeyEvent.VK_E);
+				robot.keyRelease(KeyEvent.VK_E);
+                                robot.keyRelease(KeyEvent.VK_SHIFT);
+			}
+                        else if(line.equalsIgnoreCase("R_caps")){
+				
+                                robot.keyPress(KeyEvent.VK_SHIFT);
+				robot.keyPress(KeyEvent.VK_R);
+				robot.keyRelease(KeyEvent.VK_R);
+                                robot.keyRelease(KeyEvent.VK_SHIFT);
+			}
+                        else if(line.equalsIgnoreCase("T_caps")){
+				
+                                robot.keyPress(KeyEvent.VK_SHIFT);
+				robot.keyPress(KeyEvent.VK_T);
+				robot.keyRelease(KeyEvent.VK_T);
+                                robot.keyRelease(KeyEvent.VK_SHIFT);
+			}
+                        else if(line.equalsIgnoreCase("Y_caps")){
+				
+                                robot.keyPress(KeyEvent.VK_SHIFT);
+				robot.keyPress(KeyEvent.VK_Y);
+				robot.keyRelease(KeyEvent.VK_Y);
+                                robot.keyRelease(KeyEvent.VK_SHIFT);
+			}
+                        else if(line.equalsIgnoreCase("U_caps")){
+				
+                                robot.keyPress(KeyEvent.VK_SHIFT);
+				robot.keyPress(KeyEvent.VK_U);
+				robot.keyRelease(KeyEvent.VK_U);
+                                robot.keyRelease(KeyEvent.VK_SHIFT);
+			}
+                        else if(line.equalsIgnoreCase("I_caps")){
+				
+                                robot.keyPress(KeyEvent.VK_SHIFT);
+				robot.keyPress(KeyEvent.VK_I);
+				robot.keyRelease(KeyEvent.VK_I);
+                                robot.keyRelease(KeyEvent.VK_SHIFT);
+			}
+                        else if(line.equalsIgnoreCase("O_caps")){
+				
+                                robot.keyPress(KeyEvent.VK_SHIFT);
+				robot.keyPress(KeyEvent.VK_O);
+				robot.keyRelease(KeyEvent.VK_O);
+                                robot.keyRelease(KeyEvent.VK_SHIFT);
+			}
+                        else if(line.equalsIgnoreCase("P_caps")){
+				
+                                robot.keyPress(KeyEvent.VK_SHIFT);
+				robot.keyPress(KeyEvent.VK_P);
+				robot.keyRelease(KeyEvent.VK_P);
+                                robot.keyRelease(KeyEvent.VK_SHIFT);
+			}
+                        else if(line.equalsIgnoreCase("A_caps")){
+				
+                                robot.keyPress(KeyEvent.VK_SHIFT);
+				robot.keyPress(KeyEvent.VK_A);
+				robot.keyRelease(KeyEvent.VK_A);
+                                robot.keyRelease(KeyEvent.VK_SHIFT);
+			}
+                        else if(line.equalsIgnoreCase("S_caps")){
+				
+                                robot.keyPress(KeyEvent.VK_SHIFT);
+				robot.keyPress(KeyEvent.VK_S);
+				robot.keyRelease(KeyEvent.VK_S);
+                                robot.keyRelease(KeyEvent.VK_SHIFT);
+			}
+                        else if(line.equalsIgnoreCase("D_caps")){
+				
+                                robot.keyPress(KeyEvent.VK_SHIFT);
+				robot.keyPress(KeyEvent.VK_D);
+				robot.keyRelease(KeyEvent.VK_D);
+                                robot.keyRelease(KeyEvent.VK_SHIFT);
+			}
+                        else if(line.equalsIgnoreCase("F_caps")){
+				
+                                robot.keyPress(KeyEvent.VK_SHIFT);
+				robot.keyPress(KeyEvent.VK_F);
+				robot.keyRelease(KeyEvent.VK_F);
+                                robot.keyRelease(KeyEvent.VK_SHIFT);
+			}
+                        else if(line.equalsIgnoreCase("G_caps")){
+				
+                                robot.keyPress(KeyEvent.VK_SHIFT);
+				robot.keyPress(KeyEvent.VK_G);
+				robot.keyRelease(KeyEvent.VK_G);
+                                robot.keyRelease(KeyEvent.VK_SHIFT);
+			}
+                        else if(line.equalsIgnoreCase("H_caps")){
+				
+                                robot.keyPress(KeyEvent.VK_SHIFT);
+				robot.keyPress(KeyEvent.VK_H);
+				robot.keyRelease(KeyEvent.VK_H);
+                                robot.keyRelease(KeyEvent.VK_SHIFT);
+			}
+                        else if(line.equalsIgnoreCase("J_caps")){
+				
+                                robot.keyPress(KeyEvent.VK_SHIFT);
+				robot.keyPress(KeyEvent.VK_J);
+				robot.keyRelease(KeyEvent.VK_J);
+                                robot.keyRelease(KeyEvent.VK_SHIFT);
+			}
+                        else if(line.equalsIgnoreCase("K_caps")){
+				
+                                robot.keyPress(KeyEvent.VK_SHIFT);
+				robot.keyPress(KeyEvent.VK_K);
+				robot.keyRelease(KeyEvent.VK_K);
+                                robot.keyRelease(KeyEvent.VK_SHIFT);
+			}
+                        else if(line.equalsIgnoreCase("L_caps")){
+				
+                                robot.keyPress(KeyEvent.VK_SHIFT);
+				robot.keyPress(KeyEvent.VK_L);
+				robot.keyRelease(KeyEvent.VK_L);
+                                robot.keyRelease(KeyEvent.VK_SHIFT);
+			}
+                        else if(line.equalsIgnoreCase("Z_caps")){
+				
+                                robot.keyPress(KeyEvent.VK_SHIFT);
+				robot.keyPress(KeyEvent.VK_Z);
+				robot.keyRelease(KeyEvent.VK_Z);
+                                robot.keyRelease(KeyEvent.VK_SHIFT);
+			}
+                        else if(line.equalsIgnoreCase("X_caps")){
+				
+                                robot.keyPress(KeyEvent.VK_SHIFT);
+				robot.keyPress(KeyEvent.VK_X);
+				robot.keyRelease(KeyEvent.VK_X);
+                                robot.keyRelease(KeyEvent.VK_SHIFT);
+			}
+                        else if(line.equalsIgnoreCase("C_caps")){
+				
+                                robot.keyPress(KeyEvent.VK_SHIFT);
+				robot.keyPress(KeyEvent.VK_C);
+				robot.keyRelease(KeyEvent.VK_C);
+                                robot.keyRelease(KeyEvent.VK_SHIFT);
+			}
+                        else if(line.equalsIgnoreCase("V_caps")){
+				
+                                robot.keyPress(KeyEvent.VK_SHIFT);
+				robot.keyPress(KeyEvent.VK_V);
+				robot.keyRelease(KeyEvent.VK_V);
+                                robot.keyRelease(KeyEvent.VK_SHIFT);
+			}
+                        else if(line.equalsIgnoreCase("B_caps")){
+				
+                                robot.keyPress(KeyEvent.VK_SHIFT);
+				robot.keyPress(KeyEvent.VK_B);
+				robot.keyRelease(KeyEvent.VK_B);
+                                robot.keyRelease(KeyEvent.VK_SHIFT);
+			}
+                        else if(line.equalsIgnoreCase("N_caps")){
+				
+                                robot.keyPress(KeyEvent.VK_SHIFT);
+				robot.keyPress(KeyEvent.VK_N);
+				robot.keyRelease(KeyEvent.VK_N);
+                                robot.keyRelease(KeyEvent.VK_SHIFT);
+			}
+                        else if(line.equalsIgnoreCase("M_caps")){
+				
+                                robot.keyPress(KeyEvent.VK_SHIFT);
+				robot.keyPress(KeyEvent.VK_M);
+				robot.keyRelease(KeyEvent.VK_M);
+                                robot.keyRelease(KeyEvent.VK_SHIFT);
+			}
+                        //Numeric keypresses
+                        else if(line.equalsIgnoreCase("0")){
+                                robot.keyPress(KeyEvent.VK_0);
+                                robot.keyRelease(KeyEvent.VK_0);
+                        }
+                        else if(line.equalsIgnoreCase("1")){
+                                robot.keyPress(KeyEvent.VK_1);
+                                robot.keyRelease(KeyEvent.VK_1);
+                        }
+                        else if(line.equalsIgnoreCase("2")){
+                                robot.keyPress(KeyEvent.VK_2);
+                                robot.keyRelease(KeyEvent.VK_2);
+                        }
+                        else if(line.equalsIgnoreCase("3")){
+                                robot.keyPress(KeyEvent.VK_3);
+                                robot.keyRelease(KeyEvent.VK_3);
+                        }
+                        else if(line.equalsIgnoreCase("4")){
+                                robot.keyPress(KeyEvent.VK_4);
+                                robot.keyRelease(KeyEvent.VK_4);
+                        }
+                        else if(line.equalsIgnoreCase("5")){
+                                robot.keyPress(KeyEvent.VK_5);
+                                robot.keyRelease(KeyEvent.VK_5);
+                        }
+                        else if(line.equalsIgnoreCase("6")){
+                                robot.keyPress(KeyEvent.VK_6);
+                                robot.keyRelease(KeyEvent.VK_6);
+                        }
+                        else if(line.equalsIgnoreCase("7")){
+                                robot.keyPress(KeyEvent.VK_7);
+                                robot.keyRelease(KeyEvent.VK_7);
+                        }
+                        else if(line.equalsIgnoreCase("8")){
+                                robot.keyPress(KeyEvent.VK_8);
+                                robot.keyRelease(KeyEvent.VK_8);
+                        }
+                        else if(line.equalsIgnoreCase("9")){
+                                robot.keyPress(KeyEvent.VK_9);
+                                robot.keyRelease(KeyEvent.VK_9);
+                        }
+                        //Symbols
+                        else if(line.equalsIgnoreCase("`")){
+                                robot.keyPress(InputEvent.SHIFT_DOWN_MASK);
+                                robot.keyPress(KeyEvent.VK_BACK_QUOTE);
+                                robot.keyRelease(KeyEvent.VK_BACK_QUOTE);
+                                robot.keyRelease(InputEvent.SHIFT_DOWN_MASK);
+                        }
                         
                         
                         //Mouse functions
