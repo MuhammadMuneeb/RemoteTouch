@@ -387,9 +387,14 @@ public class Keyboard extends ActionBarActivity implements View.OnClickListener 
                    System.out.println("8 HERE");
                    return true;
                case KeyEvent.KEYCODE_9:
+                   if(event.isShiftPressed()){
+                       out.println(Constants.key_brackOpen);
+                   }
+                   else{
                    out.println(Constants.key_9);
                    System.out.println("9 HERE");
-                   return true;
+                        }
+                    return true;
                //Special characters like space etc
                case KeyEvent.KEYCODE_SPACE:
                    out.println(Constants.space);
@@ -490,7 +495,12 @@ public class Keyboard extends ActionBarActivity implements View.OnClickListener 
                    out.println(Constants.key_asterisk);
                    return true;
                case KeyEvent.KEYCODE_GRAVE:
-                   out.println(Constants.key_tildApostrophe);
+                   if(event.isShiftPressed()){
+                       out.println(Constants.key_tild);
+                   }
+                   else {
+                       out.println(Constants.key_tildApostrophe);
+                   }
                    return true;
                default:
                     return super.onKeyUp(keyCode, event);
