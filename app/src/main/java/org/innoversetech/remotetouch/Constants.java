@@ -4,8 +4,12 @@ package org.innoversetech.remotetouch;
 public class Constants {
     public static final String SERVER_IP = "192.168.1.23";
     public static final int SERVER_PORT = 8998;
+
+    //For mouse
     public static final String MOUSE_RIGHT_CLICK="right_click";
     public static final String MOUSE_LEFT_CLICK="left_click";
+    public static final String MOUSE_SCROLL_WHEEL="scroll";
+    //For keyboard
     public static final String key_q="q";
     public static final String key_w="w";
     public static final String key_e="e";
@@ -32,4 +36,76 @@ public class Constants {
     public static final String key_b="b";
     public static final String key_n="n";
     public static final String key_m="m";
-    }
+    public static final String key_Q="Q_caps";
+    public static final String key_W="W_caps";
+    public static final String key_E="E_caps";
+    public static final String key_R="R_caps";
+    public static final String key_T="T_caps";
+    public static final String key_Y="Y_caps";
+    public static final String key_U="U_caps";
+    public static final String key_I="I_caps";
+    public static final String key_O="O_caps";
+    public static final String key_P="P_caps";
+    public static final String key_A="A_caps";
+    public static final String key_S="S_caps";
+    public static final String key_D="D_caps";
+    public static final String key_F="F_caps";
+    public static final String key_G="G_caps";
+    public static final String key_H="H_caps";
+    public static final String key_J="J_caps";
+    public static final String key_K="K_caps";
+    public static final String key_L="L_caps";
+    public static final String key_Z="Z_caps";
+    public static final String key_X="X_caps";
+    public static final String key_C="C_caps";
+    public static final String key_V="V_caps";
+    public static final String key_B="B_caps";
+    public static final String key_N="N_caps";
+    public static final String key_M="M_caps";
+    //For numbers
+    public static final int key_0=0;
+    public static final int key_1=1;
+    public static final int key_2=2;
+    public static final int key_3=3;
+    public static final int key_4=4;
+    public static final int key_5=5;
+    public static final int key_6=6;
+    public static final int key_7=7;
+    public static final int key_8=8;
+    public static final int key_9=9;
+    //For symbols
+    public static final String key_excl= "!";
+    public static final String key_at= "!";
+    public static final String key_hash= "!";
+    public static final String key_dollar= "!";
+    public static final String key_prcnt= "!";
+    public static final String key_cap= "!";
+    public static final String key_amp= "!";
+    public static final String key_asterisk= "!";
+    public static final String key_brackOpen= "!";
+    public static final String key_brackClose= "!";
+    public static final String key_minus= "!";
+    public static final String key_underscore= "!";
+    public static final String key_plus= "!";
+    public static final String key_equals= "!";
+    public static final String key_tild= "!";
+    public static final String key_tildApostrophe= "!";
+    public static final String key_sqBrackOP= "!";
+    public static final String key_sqBrackClose= "!";
+    public static final String key_curlyBrackOp= "!";
+    public static final String key_curlyBrackClose= "!";
+    public static final String key_leftSlash= "!";
+    public static final String key_StickThing= "!";
+    public static final String key_semicolon= "!";
+    public static final String key_colon= "!";
+    public static final String key_quote= "!";
+    public static final String key_edblQuote= "!";
+    public static final String key_comma= "!";
+    public static final String key_openTag= "!";
+    public static final String key_period= "!";
+    public static final String key_closeTag= "!";
+    public static final String key_rightSlash= "!";
+    public static final String key_question= "!";
+    public static final String key_enter= "!";
+    public static final String key_back= "!";
+}
