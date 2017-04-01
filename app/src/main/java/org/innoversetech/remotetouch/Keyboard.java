@@ -7,6 +7,7 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.method.QwertyKeyListener;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
@@ -14,7 +15,10 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.View.OnKeyListener;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -30,13 +34,12 @@ import java.net.Socket;
 //TODO Add more comments
 //TODO Add server functionality
 
-public class Keyboard extends ActionBarActivity{
+public class Keyboard extends ActionBarActivity implements View.OnClickListener {
     Context context;
     //For Layout stuff
-    TextView scrollView;
+    Button keyOpener;
     //For connection stuff
     private boolean isConnected=false;
-    private boolean mouseMoved=false;
     private Socket socket;
     private PrintWriter out;
     //Cursor movement
@@ -47,14 +50,16 @@ public class Keyboard extends ActionBarActivity{
         setContentView(R.layout.activity_keyboard);
         context = this;
         //Init the layout
-
+        keyOpener = (Button)findViewById(R.id.keyb);
+        keyOpener.setOnClickListener(this);
     }
-
+    @Override
     public boolean onKeyUp(int keyCode, KeyEvent event){
         switch(keyCode){
             case KeyEvent.KEYCODE_Q:
                 if (isConnected && out!=null) {
                     out.println(Constants.key_q);
+                    System.out.println("Q key");
                 }
                 return true;
             case KeyEvent.KEYCODE_W:
@@ -236,6 +241,19 @@ public class Keyboard extends ActionBarActivity{
             }
         }
 
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch(v.getId()) {
+            case R.id.keyb:
+            try {
+                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     public class ConnectPhone extends AsyncTask<String, Void, Boolean>{

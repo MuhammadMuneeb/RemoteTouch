@@ -30,5 +30,16 @@
             android:text="Scan QR Code"
             tools:layout_editor_absoluteX="131dp"
             tools:layout_editor_absoluteY="178dp" />
+        <Button
+            android:id="@+id/keyBoard"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/qrCode"
+            android:layout_marginStart="66dp"
+            android:layout_marginTop="22dp"
+            android:layout_toEndOf="@+id/Mouse"
+            android:text="Keyboard"
+            tools:layout_editor_absoluteX="131dp"
+            tools:layout_editor_absoluteY="178dp" />
     </LinearLayout>
 </RelativeLayout>
