@@ -409,6 +409,173 @@ public class RemoteDroidServer {
                                 robot.keyRelease(KeyEvent.VK_BACK_QUOTE);
                                 robot.keyRelease(InputEvent.SHIFT_DOWN_MASK);
                         }
+                        else if(line.equalsIgnoreCase("!")){
+                                robot.keyPress(KeyEvent.VK_SHIFT);
+                                robot.keyPress(KeyEvent.VK_1);
+                                robot.keyRelease(KeyEvent.VK_1);
+                                robot.keyRelease(KeyEvent.VK_SHIFT);
+                        }
+                        else if(line.equalsIgnoreCase("@")){
+                                robot.keyPress(KeyEvent.VK_SHIFT);
+                                robot.keyPress(KeyEvent.VK_2);
+                                robot.keyRelease(KeyEvent.VK_2);
+                                robot.keyRelease(KeyEvent.VK_SHIFT);
+                        }
+                        else if(line.equalsIgnoreCase("#")){
+                                robot.keyPress(KeyEvent.VK_SHIFT);
+                                robot.keyPress(KeyEvent.VK_3);
+                                robot.keyRelease(KeyEvent.VK_3);
+                                robot.keyRelease(KeyEvent.VK_SHIFT);
+                        }
+                        else if(line.equalsIgnoreCase("$")){
+                                robot.keyPress(KeyEvent.VK_SHIFT);
+                                robot.keyPress(KeyEvent.VK_4);
+                                robot.keyRelease(KeyEvent.VK_4);
+                                robot.keyRelease(KeyEvent.VK_SHIFT);
+                        }
+                        else if(line.equalsIgnoreCase("%")){
+                                robot.keyPress(KeyEvent.VK_SHIFT);
+                                robot.keyPress(KeyEvent.VK_5);
+                                robot.keyRelease(KeyEvent.VK_5);
+                                robot.keyRelease(KeyEvent.VK_SHIFT);
+                        }
+                        else if(line.equalsIgnoreCase("^")){
+                                robot.keyPress(KeyEvent.VK_SHIFT);
+                                robot.keyPress(KeyEvent.VK_6);
+                                robot.keyRelease(KeyEvent.VK_6);
+                                robot.keyRelease(KeyEvent.VK_SHIFT);
+                        }
+                        else if(line.equalsIgnoreCase("&")){
+                                robot.keyPress(KeyEvent.VK_SHIFT);
+                                robot.keyPress(KeyEvent.VK_7);
+                                robot.keyRelease(KeyEvent.VK_7);
+                                robot.keyRelease(KeyEvent.VK_SHIFT);
+                        }
+                        else if(line.equalsIgnoreCase("*")){
+                                robot.keyPress(KeyEvent.VK_SHIFT);
+                                robot.keyPress(KeyEvent.VK_8);
+                                robot.keyRelease(KeyEvent.VK_8);
+                                robot.keyRelease(KeyEvent.VK_SHIFT);
+                        }
+                        else if(line.equalsIgnoreCase("(")){
+                                robot.keyPress(KeyEvent.VK_SHIFT);
+                                robot.keyPress(KeyEvent.VK_9);
+                                robot.keyRelease(KeyEvent.VK_9);
+                                robot.keyRelease(KeyEvent.VK_SHIFT);
+                        }
+                        else if(line.equalsIgnoreCase(")")){
+                                robot.keyPress(KeyEvent.VK_SHIFT);
+                                robot.keyPress(KeyEvent.VK_0);
+                                robot.keyRelease(KeyEvent.VK_0);
+                                robot.keyRelease(KeyEvent.VK_SHIFT);
+                        }
+                        else if(line.equalsIgnoreCase("_")){
+                                robot.keyPress(KeyEvent.VK_SHIFT);
+                                robot.keyPress(KeyEvent.VK_MINUS);
+                                robot.keyRelease(KeyEvent.VK_MINUS);
+                                robot.keyRelease(KeyEvent.VK_SHIFT);
+                        }
+                        else if(line.equalsIgnoreCase("-")){
+                                robot.keyPress(KeyEvent.VK_MINUS);
+                                robot.keyRelease(KeyEvent.VK_MINUS);
+                        }
+                        else if(line.equalsIgnoreCase("=")){
+                                robot.keyPress(KeyEvent.VK_EQUALS);
+                                robot.keyRelease(KeyEvent.VK_EQUALS);
+                        }
+                        else if(line.equalsIgnoreCase("+")){
+                                robot.keyPress(KeyEvent.VK_SHIFT);
+                                robot.keyPress(KeyEvent.VK_EQUALS);
+                                robot.keyRelease(KeyEvent.VK_EQUALS);
+                                robot.keyRelease(KeyEvent.VK_SHIFT);
+                        }
+                        else if(line.equalsIgnoreCase("{")){
+                                robot.keyPress(KeyEvent.VK_SHIFT);
+                                robot.keyPress(KeyEvent.VK_BRACELEFT);
+                                robot.keyRelease(KeyEvent.VK_BRACELEFT);
+                                robot.keyRelease(KeyEvent.VK_SHIFT);
+                        }
+                        else if(line.equalsIgnoreCase("}")){
+                                robot.keyPress(KeyEvent.VK_SHIFT);
+                                robot.keyPress(KeyEvent.VK_BRACERIGHT);
+                                robot.keyRelease(KeyEvent.VK_BRACERIGHT);
+                                robot.keyRelease(KeyEvent.VK_SHIFT);
+                        }
+                        else if(line.equalsIgnoreCase(":")){
+                                robot.keyPress(KeyEvent.VK_SHIFT);
+                                robot.keyPress(KeyEvent.VK_SEMICOLON);
+                                robot.keyRelease(KeyEvent.VK_SEMICOLON);
+                                robot.keyRelease(KeyEvent.VK_SHIFT);
+                        }
+                        else if(line.equalsIgnoreCase("\"")){
+                                robot.keyPress(KeyEvent.VK_QUOTEDBL);
+                                robot.keyRelease(KeyEvent.VK_QUOTEDBL);
+                        }
+                        else if(line.equalsIgnoreCase("<")){
+                                robot.keyPress(KeyEvent.VK_SHIFT);
+                                robot.keyPress(KeyEvent.VK_COMMA);
+                                robot.keyRelease(KeyEvent.VK_COMMA);
+                                robot.keyRelease(KeyEvent.VK_SHIFT);
+                        }
+                        else if(line.equalsIgnoreCase(">")){
+                                robot.keyPress(KeyEvent.VK_SHIFT);
+                                robot.keyPress(KeyEvent.VK_PERIOD);
+                                robot.keyRelease(KeyEvent.VK_PERIOD);
+                                robot.keyRelease(KeyEvent.VK_SHIFT);
+                        }
+                        else if(line.equalsIgnoreCase("?")){
+                                robot.keyPress(KeyEvent.VK_SHIFT);
+                                robot.keyPress(KeyEvent.VK_SLASH);
+                                robot.keyRelease(KeyEvent.VK_SLASH);
+                                robot.keyRelease(KeyEvent.VK_SHIFT);
+                        }
+                        else if(line.equalsIgnoreCase("[")){
+                                robot.keyPress(KeyEvent.VK_BRACELEFT);
+                                robot.keyRelease(KeyEvent.VK_BRACELEFT);
+                        }
+                        else if(line.equalsIgnoreCase("]")){
+                                robot.keyPress(KeyEvent.VK_BRACERIGHT);
+                                robot.keyRelease(KeyEvent.VK_BRACERIGHT);
+                        }
+                        
+                        else if(line.equalsIgnoreCase(";")){
+                                robot.keyPress(KeyEvent.VK_SEMICOLON);
+                                robot.keyRelease(KeyEvent.VK_SEMICOLON);
+                        }
+                        else if(line.equalsIgnoreCase("'")){
+                                robot.keyPress(KeyEvent.VK_QUOTE);
+                                robot.keyRelease(KeyEvent.VK_QUOTE);
+                        }
+                        else if(line.equalsIgnoreCase(",")){
+                                robot.keyPress(KeyEvent.VK_COMMA);
+                                robot.keyRelease(KeyEvent.VK_COMMA);
+                        }
+                        else if(line.equalsIgnoreCase(".")){
+                                robot.keyPress(KeyEvent.VK_PERIOD);
+                                robot.keyRelease(KeyEvent.VK_PERIOD);
+                        }
+                        else if(line.equalsIgnoreCase("/")){
+                                robot.keyPress(KeyEvent.VK_SLASH);
+                                robot.keyRelease(KeyEvent.VK_SLASH);
+                        }
+                        else if(line.equalsIgnoreCase("\\")){
+                                robot.keyPress(KeyEvent.VK_BACK_SLASH);
+                                robot.keyRelease(KeyEvent.VK_BACK_SLASH);
+                        }
+                        else if(line.equalsIgnoreCase("enter")){
+                                robot.keyPress(KeyEvent.VK_ENTER);
+                                robot.keyRelease(KeyEvent.VK_ENTER);
+                        }
+                        else if(line.equalsIgnoreCase("backspace")){
+                                robot.keyPress(KeyEvent.VK_BACK_SPACE);
+                                robot.keyRelease(KeyEvent.VK_BACK_SPACE);
+                        }
+                        else if(line.equalsIgnoreCase("space")){
+                                robot.keyPress(KeyEvent.VK_SPACE);
+                                robot.keyRelease(KeyEvent.VK_SPACE);
+                        }
+
+                        
                         
                         
                         //Mouse functions
