@@ -108,7 +108,8 @@ public class Mouse extends ActionBarActivity implements View.OnClickListener {
                                 sDisY = event.getY()-sInitY;
                                 initY = event.getY();
                                 if(sDisY != 0){
-                                    out.println("." + sDisY);
+                                    out.println(sDisY +"div" + sDisY);
+                                    System.out.println("Co-ordinates are:"+ sDisY);
                                 }
                                 mouseMoved = true;
                                 break;
