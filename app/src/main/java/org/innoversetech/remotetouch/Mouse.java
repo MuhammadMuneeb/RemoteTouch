@@ -34,6 +34,7 @@ public class Mouse extends ActionBarActivity implements View.OnClickListener {
     Button mRbutton;
     Button mLbutton;
     TextView scrollView;
+    TextView mScroller;
     //For connection stuff
     private boolean isConnected=false;
     private boolean mouseMoved=false;
@@ -44,6 +45,8 @@ public class Mouse extends ActionBarActivity implements View.OnClickListener {
     private float initY =0;
     private float disX =0;
     private float disY =0;
+    private float sInitY =0;
+    private float sDisY =0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +57,7 @@ public class Mouse extends ActionBarActivity implements View.OnClickListener {
         mLbutton = (Button)findViewById(R.id.leftClick);
         mRbutton = (Button)findViewById(R.id.rightClick);
         scrollView = (TextView)findViewById(R.id.mousePad);
+        mScroller = (TextView)findViewById(R.id.mousePadScroller);
         //Setting the on click listeners for the buttons
         mLbutton.setOnClickListener(this);
         mRbutton.setOnClickListener(this);
@@ -91,8 +95,33 @@ public class Mouse extends ActionBarActivity implements View.OnClickListener {
             }
         });
 
+            mScroller.setOnTouchListener(new View.OnTouchListener() {
+                @Override
+                public boolean onTouch(View v, MotionEvent event) {
+                    if(isConnected && out!=null){
+                        switch(event.getAction()){
+                            case MotionEvent.ACTION_DOWN:
+                                sInitY = event.getY();
+                                mouseMoved = false;
+                                break;
+                            case MotionEvent.ACTION_MOVE:
+                                sDisY = event.getY()-sInitY;
+                                initY = event.getY();
+                                if(sDisY != 0){
+                                    out.println("." + sDisY);
+                                }
+                                mouseMoved = true;
+                                break;
+                        }
+                    }
 
-    }
+
+
+                    return true;
+                }
+            });
+
+            }
     @Override
     public boolean onCreateOptionsMenu(Menu menu){
     //to inflate the menu, and adds it to the actionbar
