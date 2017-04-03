@@ -186,6 +186,13 @@ public class RemoteDroidServer {
 				robot.keyRelease(KeyEvent.VK_M);		        	
 			}
                         //Uppercase
+                        else if(line.equalsIgnoreCase("Q_caps")){
+				
+                                robot.keyPress(KeyEvent.VK_SHIFT);
+				robot.keyPress(KeyEvent.VK_Q);
+				robot.keyRelease(KeyEvent.VK_Q);
+                                robot.keyRelease(KeyEvent.VK_SHIFT);
+			}
                         else if(line.equalsIgnoreCase("W_caps")){
 				
                                 robot.keyPress(KeyEvent.VK_SHIFT);
@@ -403,24 +410,17 @@ public class RemoteDroidServer {
                                 robot.keyRelease(KeyEvent.VK_9);
                         }
                         //Symbols
-                        else if(line.equalsIgnoreCase("`")){
-                                robot.keyPress(InputEvent.SHIFT_DOWN_MASK);
-                                robot.keyPress(KeyEvent.VK_BACK_QUOTE);
-                                robot.keyRelease(KeyEvent.VK_BACK_QUOTE);
-                                robot.keyRelease(InputEvent.SHIFT_DOWN_MASK);
-                        }
+                        
                         else if(line.equalsIgnoreCase("!")){
                                 robot.keyPress(KeyEvent.VK_SHIFT);
                                 robot.keyPress(KeyEvent.VK_1);
                                 robot.keyRelease(KeyEvent.VK_1);
                                 robot.keyRelease(KeyEvent.VK_SHIFT);
-                        }
+                        } 
                         else if(line.equalsIgnoreCase("@")){
-                                robot.keyPress(KeyEvent.VK_SHIFT);
-                                robot.keyPress(KeyEvent.VK_2);
-                                robot.keyRelease(KeyEvent.VK_2);
-                                robot.keyRelease(KeyEvent.VK_SHIFT);
-                        }
+                                robot.keyPress(KeyEvent.VK_AT);
+                                robot.keyRelease(KeyEvent.VK_AT);
+                                }
                         else if(line.equalsIgnoreCase("#")){
                                 robot.keyPress(KeyEvent.VK_SHIFT);
                                 robot.keyPress(KeyEvent.VK_3);
@@ -602,6 +602,24 @@ public class RemoteDroidServer {
 				float nowy=point.y;
 				robot.mouseMove((int)(nowx+movex),(int)(nowy+movey));//Move mouse pointer to new location
 			}
+                        
+                        else if(line.contains("div")){
+                                try{
+                                float scrollY = Float.parseFloat(line.split("d")[0]);
+//                                String meh = line.split("-")[1];
+//                                System.out.println(meh);
+                                Point point = MouseInfo.getPointerInfo().getLocation(); //Get current mouse position
+				float nowY = point.y;
+                                if(scrollY>0){
+                                 robot.mouseWheel(1);
+                                            }
+                                else{
+                                    robot.mouseWheel(-1);
+                                    }
+                                }catch(NumberFormatException e){
+                                e.getMessage();
+                                }
+                        }
 			//Exit if user ends the connection
 			else if(line.equalsIgnoreCase("exit")){
 				isConnected=false;
@@ -609,10 +627,12 @@ public class RemoteDroidServer {
 				server.close();
 				client.close();
 			}
+                        
 	        } catch (IOException e) {
 				System.out.println("Read failed");
 				System.exit(-1);
 	        }
+                
       	}
  
 //      InetAddress ip = null;
