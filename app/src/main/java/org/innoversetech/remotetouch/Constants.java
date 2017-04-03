@@ -2,7 +2,7 @@ package org.innoversetech.remotetouch;
 
 
 public class Constants {
-    public static final String SERVER_IP = "192.168.1.6";
+    public static final String SERVER_IP = "192.168.1.22";
     public static final int SERVER_PORT = 8998;
 
     //For mouse

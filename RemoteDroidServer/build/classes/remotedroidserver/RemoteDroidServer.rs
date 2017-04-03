@@ -1,8 +1,1 @@
-RemoteDroidServer$3
-RemoteDroidServer$ipAddressStuff
-RemoteDroidServer$4
-RemoteDroidServer$5
-RemoteDroidServer$6
 RemoteDroidServer
-RemoteDroidServer$1
-RemoteDroidServer$2
