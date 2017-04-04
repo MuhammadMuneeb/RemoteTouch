@@ -337,13 +337,23 @@ public class Keyboard extends ActionBarActivity implements View.OnClickListener 
                    }
                         return true;
                case KeyEvent.KEYCODE_2:
-                   out.println(Constants.key_2);
-                   System.out.println("2 HERE");
-                   return true;
+                   if(event.isShiftPressed()){
+                       out.println(Constants.key_at);
+                   }
+                   else {
+                       out.println(Constants.key_2);
+                       System.out.println("2 HERE");
+                   }
+                        return true;
                case KeyEvent.KEYCODE_3:
-                   out.println(Constants.key_3);
-                   System.out.println("3 HERE");
-                   return true;
+                   if(event.isShiftPressed()){
+                       out.println(Constants.key_hash);
+                   }
+                   else {
+                       out.println(Constants.key_3);
+                       System.out.println("3 HERE");
+                   }
+                        return true;
                case KeyEvent.KEYCODE_4:
                    if(event.isShiftPressed()){
                        out.println(Constants.key_dollar);
@@ -383,9 +393,14 @@ public class Keyboard extends ActionBarActivity implements View.OnClickListener 
                }
                    return true;
                case KeyEvent.KEYCODE_8:
-                   out.println(Constants.key_8);
-                   System.out.println("8 HERE");
-                   return true;
+                   if(event.isShiftPressed()){
+                       out.println(Constants.key_asterisk);
+                   }
+                   else {
+                       out.println(Constants.key_8);
+                       System.out.println("8 HERE");
+                   }
+                        return true;
                case KeyEvent.KEYCODE_9:
                    if(event.isShiftPressed()){
                        out.println(Constants.key_brackOpen);

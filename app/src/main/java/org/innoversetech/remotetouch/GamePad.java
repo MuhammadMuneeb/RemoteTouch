@@ -85,6 +85,57 @@ public class GamePad extends AppCompatActivity implements View.OnClickListener {
                     out.println(Constants.key_d);
                 }
                 break;
+            case R.id.but1:
+                if(isConnected && out != null){
+                    out.println(Constants.key_u);
+                }
+                break;
+            case R.id.but2:
+                if(isConnected && out != null){
+                    out.println(Constants.key_b);
+                }
+                break;
+            case R.id.but3:
+                if(isConnected && out != null){
+                    out.println(Constants.key_o);
+                }
+                break;
+            case R.id.but4:
+                if(isConnected && out != null){
+                    out.println(Constants.key_p);
+                }
+                break;
+            case R.id.select:
+                if(isConnected && out != null){
+                    out.println(Constants.key_back);
+                }
+                break;
+            case R.id.start:
+                if(isConnected && out != null){
+                    out.println(Constants.key_enter);
+                }
+                break;
+            case R.id.button4:
+                if(isConnected && out != null){
+                    out.println(Constants.key_q);
+                }
+                break;
+            case R.id.button5:
+                if(isConnected && out != null){
+                    out.println(Constants.key_e);
+                }
+                break;
+            case R.id.button6:
+                if(isConnected && out != null){
+                    out.println(Constants.key_r);
+                }
+                break;
+            case R.id.button7:
+                if(isConnected && out != null){
+                    out.println(Constants.key_m);
+                }
+                break;
+
 
 
         }
