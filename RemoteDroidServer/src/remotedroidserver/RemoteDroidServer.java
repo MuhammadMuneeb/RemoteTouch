@@ -620,6 +620,22 @@ public class RemoteDroidServer {
                                 e.getMessage();
                                 }
                         }
+                else if(line.contains("copy")){
+				                
+                    robot.keyPress(KeyEvent.VK_SHIFT);
+                    robot.keyPress(KeyEvent.VK_C);
+                    robot.keyRelease(KeyEvent.VK_C);
+                    robot.keyRelease(KeyEvent.VK_SHIFT);
+			}
+                else if(line.contains("paste")){
+                    robot.keyPress(KeyEvent.VK_SHIFT);
+                    robot.keyPress(KeyEvent.VK_V);
+                    robot.keyRelease(KeyEvent.VK_V);
+                    robot.keyRelease(KeyEvent.VK_SHIFT);			}
+                
+                
+                
+                
 			//Exit if user ends the connection
 			else if(line.equalsIgnoreCase("exit")){
 				isConnected=false;
