@@ -55,4 +55,21 @@
             android:id="@+id/rightClick"/>
 
     </LinearLayout>
+
+    <Button
+        android:id="@+id/copy"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/linLayout"
+        android:layout_marginStart="48dp"
+        android:text="Copy" />
+
+    <Button
+        android:id="@+id/paste"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/linLayout"
+        android:layout_centerHorizontal="true"
+        android:text="paste" />
 </RelativeLayout>

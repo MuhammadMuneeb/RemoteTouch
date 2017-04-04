@@ -33,6 +33,8 @@ public class Mouse extends ActionBarActivity implements View.OnClickListener {
     //For Layout stuff
     Button mRbutton;
     Button mLbutton;
+    Button mCopy;
+    Button mPaste;
     TextView scrollView;
     TextView mScroller;
     //For connection stuff
@@ -56,11 +58,15 @@ public class Mouse extends ActionBarActivity implements View.OnClickListener {
         //Init the layout
         mLbutton = (Button)findViewById(R.id.leftClick);
         mRbutton = (Button)findViewById(R.id.rightClick);
+        mCopy = (Button)findViewById(R.id.copy);
+        mPaste = (Button)findViewById(R.id.paste);
         scrollView = (TextView)findViewById(R.id.mousePad);
         mScroller = (TextView)findViewById(R.id.mousePadScroller);
         //Setting the on click listeners for the buttons
         mLbutton.setOnClickListener(this);
         mRbutton.setOnClickListener(this);
+        mCopy.setOnClickListener(this);
+        mPaste.setOnClickListener(this);
         //Set touch on touch listener for mousepad
         scrollView.setOnTouchListener(new View.OnTouchListener() {
             @Override
@@ -156,6 +162,17 @@ public class Mouse extends ActionBarActivity implements View.OnClickListener {
                 if(isConnected && out != null){
                     out.println(Constants.MOUSE_RIGHT_CLICK);
                 }
+                break;
+            case R.id.copy:
+                if(isConnected && out != null){
+                    out.println(Constants.copy);
+                }
+                break;
+            case R.id.paste:
+                if(isConnected && out != null){
+                    out.println(Constants.paste);
+                }
+                break;
         }
 
     }

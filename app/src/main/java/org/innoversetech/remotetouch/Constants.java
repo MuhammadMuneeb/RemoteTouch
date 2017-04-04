@@ -109,4 +109,6 @@ public class Constants {
     public static final String key_enter= "enter";
     public static final String key_back= "backspace";
     public static final String space ="Space";
+    public static final String copy = "copy";
+    public static final String paste = "paste";
 }
