@@ -4,34 +4,24 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/rootRelLayout">
-    <ImageView
-        android:layout_width="200sp"
-        android:layout_height="200sp"
-        android:layout_centerHorizontal="true"
-        android:id="@+id/image"/>
+    tools:context="org.innoversetech.remotetouch.qrScanner"
+    android:orientation="vertical" >
+
     <TextView
-        android:layout_width="wrap_content"
+        android:id="@+id/result_textview"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/scanHead"
-        android:layout_centerHorizontal="true"
-        android:text="Scan Results"
-        android:layout_below="@id/image"/>
-    <TextView
-        android:id="@+id/scan_results"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/scanHead"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dp"/>
+        android:text="No Barcode captured"
+        android:textSize="22sp"
+        android:freezesText="true"
+        android:layout_centerVertical="true"
+        android:gravity="center" />
 
     <Button
-        android:id="@+id/qrButton"
-        android:layout_width="wrap_content"
+        android:id="@+id/scan_barcode_button"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="10dp"
-        android:layout_marginTop="20dp"
-        android:text="Take Picture"/>
+        android:text="Scan Barcode"
+        android:layout_below="@id/result_textview"
+        android:background="@color/colorAccent" />
 </RelativeLayout>

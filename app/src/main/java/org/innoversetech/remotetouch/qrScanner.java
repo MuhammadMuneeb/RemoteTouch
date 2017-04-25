@@ -7,6 +7,7 @@ import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
@@ -15,6 +16,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.util.SparseArray;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -25,177 +29,109 @@ import com.google.android.gms.vision.Frame;
 import com.google.android.gms.vision.barcode.Barcode;
 import com.google.android.gms.vision.barcode.BarcodeDetector;
 
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.OutputStreamWriter;
+import java.io.PrintWriter;
+import java.net.InetAddress;
+import java.net.Socket;
 
 
 //TODO Store the result to send to server and start the browser there
 
 public class qrScanner extends AppCompatActivity {
-    //All the relevant strings for intents and stuff
-    private static final String LOG_TAG = "Bar/QR Code scanner API";
-    private static final int PHOTO_REQUEST = 10;
-    private static final int REQUEST_WRITE_PERMISSION = 20;
-    private static final String SAVED_INSTANCE_URI = "uri";
-    private static final String SAVED_INSTANCE_RESULT = "result";
-    //Layout elements
-    private TextView mScanRes;
-    private BarcodeDetector mDetector;
-    private Uri mImgUri;
+    private static final int BARCODE_RESULT_REQUEST_CODE = 1;
+    //For connection stuff
+    private boolean isConnected=false;
+    private Socket socket;
+    private PrintWriter out;
+    Context context;
+    TextView mTextView;
+    Button mButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_qr_scanner);
 
-        //Init the layout parts
-        Button button = (Button) findViewById(R.id.qrButton);
-        mScanRes = (TextView) findViewById(R.id.scan_results);
-
-        if (savedInstanceState != null) {
-            mImgUri = Uri.parse(savedInstanceState.getString(SAVED_INSTANCE_URI));
-            mScanRes.setText(savedInstanceState.getString(SAVED_INSTANCE_RESULT));
-        }//end of control statement
-        button.setOnClickListener(new OnClickListener() {
-
+        mTextView =(TextView)findViewById(R.id.result_textview);
+        mButton = (Button)findViewById(R.id.scan_barcode_button);
+        mButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                ActivityCompat.requestPermissions(qrScanner.this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}
-                        , REQUEST_WRITE_PERMISSION);
+                Intent intent = new Intent(getApplicationContext(), BarCodeCaptureActivity.class);
+                startActivityForResult(intent, BARCODE_RESULT_REQUEST_CODE);
             }
-        });//End of onClickListener
-        mDetector = new BarcodeDetector.Builder(getApplicationContext()).setBarcodeFormats(Barcode.DATA_MATRIX
-                | Barcode.QR_CODE).build();
-
-        if (!mDetector.isOperational()) {
-            mScanRes.setText("Scanner not set up");
-            return;
-        }
-    }
-
-    @Override
-    public void onRequestPermissionsResult(int reqCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        super.onRequestPermissionsResult(reqCode, permissions, grantResults);
-        switch (reqCode) {
-            case REQUEST_WRITE_PERMISSION:
-                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_DENIED) {
-                    takePicture();
-                } else {
-                    Toast.makeText(qrScanner.this, "Permission Denied", Toast.LENGTH_SHORT).show();
-                }
-        }
+        });
     }
 
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == PHOTO_REQUEST && resultCode == RESULT_OK) {
-            launchMediaScanIntent();
-            try {
-                Bitmap bitmap = decodeBitmapUri(this, mImgUri);
-                if (mDetector.isOperational() && bitmap != null) {
-                    Frame frame = new Frame.Builder().setBitmap(bitmap).build();
-                    SparseArray<Barcode> barcodes = mDetector.detect(frame);
-                    for (int index = 0; index < barcodes.size(); index++) {
-                        Barcode code = barcodes.valueAt(index);
-                        mScanRes.setText(mScanRes.getText() + code.displayValue + "\n");
+    public boolean onCreateOptionsMenu(Menu menu){
+        //to inflate the menu, and adds it to the actionbar
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_main, menu);
+        return true;
+    }
 
-                        //Required only if you need to extract the type of barcode
-                        int type = barcodes.valueAt(index).valueFormat;
-                        switch (type) {
-                            case Barcode.CONTACT_INFO:
-                                Log.i(LOG_TAG, code.contactInfo.title);
-                                break;
-                            case Barcode.EMAIL:
-                                Log.i(LOG_TAG, code.email.address);
-                                break;
-                            case Barcode.ISBN:
-                                Log.i(LOG_TAG, code.rawValue);
-                                break;
-                            case Barcode.PHONE:
-                                Log.i(LOG_TAG, code.phone.number);
-                                break;
-                            case Barcode.PRODUCT:
-                                Log.i(LOG_TAG, code.rawValue);
-                                break;
-                            case Barcode.SMS:
-                                Log.i(LOG_TAG, code.sms.message);
-                                break;
-                            case Barcode.TEXT:
-                                Log.i(LOG_TAG, code.rawValue);
-                                break;
-                            case Barcode.URL:
-                                Log.i(LOG_TAG, "url: " + code.url.url);
-                                break;
-                            case Barcode.WIFI:
-                                Log.i(LOG_TAG, code.wifi.ssid);
-                                break;
-                            case Barcode.GEO:
-                                Log.i(LOG_TAG, code.geoPoint.lat + ":" + code.geoPoint.lng);
-                                break;
-                            case Barcode.CALENDAR_EVENT:
-                                Log.i(LOG_TAG, code.calendarEvent.description);
-                                break;
-                            case Barcode.DRIVER_LICENSE:
-                                Log.i(LOG_TAG, code.driverLicense.licenseNumber);
-                                break;
-                            default:
-                                Log.i(LOG_TAG, code.rawValue);
-                                break;
-                        }
-                    }
-                    if (barcodes.size() == 0) {
-                        mScanRes.setText("Scan Failed: Found nothing to scan");
-                    }
-                } else {
-                    mScanRes.setText("Could not set up the detector!");
-                }
-            } catch (Exception e) {
-                Toast.makeText(this, "Failed to load Image", Toast.LENGTH_SHORT)
-                        .show();
-                Log.e(LOG_TAG, e.toString());
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item){
+        int id = item.getItemId();
+        if(id== R.id.action_connect){
+            qrScanner.ConnectPhone connectPhone = new qrScanner.ConnectPhone();
+            connectPhone.execute(Constants.SERVER_IP);//Connect with server
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+
+    public void onDestroy(){
+        super.onDestroy();
+        if(isConnected && out!=null){
+            try{
+                out.println("exit");//Exit the server
+                socket.close();//close the socket
+            }catch(IOException e){
+                Log.e("APP", "Error in closing the socket", e);
             }
         }
+
     }
 
-    private void takePicture(){
-        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        File photo = new File(Environment.getExternalStorageDirectory(), "pic.jpg");
-        mImgUri = Uri.fromFile(photo);
-        intent.putExtra(MediaStore.EXTRA_OUTPUT, mImgUri);
-        startActivityForResult(intent, PHOTO_REQUEST);
-    }
 
-    @Override
-    protected void onSaveInstanceState(Bundle outState) {
-        if (mImgUri != null) {
-            outState.putString(SAVED_INSTANCE_URI, mImgUri.toString());
-            outState.putString(SAVED_INSTANCE_RESULT, mScanRes.getText().toString());
+    public class ConnectPhone extends AsyncTask<String, Void, Boolean> {
+
+        @Override
+        protected Boolean doInBackground(String... params) {
+            boolean result = true;
+            try{
+                InetAddress serverAdrs = InetAddress.getByName(params[0]);
+                socket = new Socket(serverAdrs, Constants.SERVER_PORT);
+            }catch(IOException e){
+                Log.e("Connection", "Error while connecting", e);
+                result = false;
+            }
+            return result;
         }
-        super.onSaveInstanceState(outState);
-    }
 
-    private void launchMediaScanIntent() {
-        Intent mediaScanIntent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
-        mediaScanIntent.setData(mImgUri);
-        this.sendBroadcast(mediaScanIntent);
-    }
+        @Override
+        protected void onPostExecute(Boolean result){
+            isConnected = result;
+            Toast.makeText(context, isConnected?"Connected" : "Unable to connect", Toast.LENGTH_SHORT).show();
+            try{
+                if(isConnected){
+                    //Stream to send data to server
+                    out = new PrintWriter(new BufferedWriter(new OutputStreamWriter(socket.getOutputStream())), true);
+                }
+            }catch(IOException e){
+                Log.e("AppIssues", "Unable to create outwriter", e);
+                Toast.makeText(context, "Error while connecting", Toast.LENGTH_LONG).show();
+            }
+        }
 
-    private Bitmap decodeBitmapUri(Context ctx, Uri uri) throws FileNotFoundException {
-        int targetW = 600;
-        int targetH = 600;
-        BitmapFactory.Options bmOptions = new BitmapFactory.Options();
-        bmOptions.inJustDecodeBounds = true;
-        BitmapFactory.decodeStream(ctx.getContentResolver().openInputStream(uri), null, bmOptions);
-        int photoW = bmOptions.outWidth;
-        int photoH = bmOptions.outHeight;
-
-        int scaleFactor = Math.min(photoW / targetW, photoH / targetH);
-        bmOptions.inJustDecodeBounds = false;
-        bmOptions.inSampleSize = scaleFactor;
-
-        return BitmapFactory.decodeStream(ctx.getContentResolver()
-                .openInputStream(uri), null, bmOptions);
     }
 
 }
