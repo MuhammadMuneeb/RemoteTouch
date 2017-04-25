@@ -1,4 +1,6 @@
+import com.sun.jndi.toolkit.url.Uri;
 import java.awt.AWTException;
+import java.awt.Desktop;
 import java.awt.Image;
 import java.awt.MenuItem;
 import java.awt.Robot;
@@ -22,6 +24,8 @@ import java.net.InetAddress;
 import java.net.InetSocketAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.net.UnknownHostException;
 import java.util.logging.Level;
@@ -631,8 +635,17 @@ public class RemoteDroidServer {
                     robot.keyPress(KeyEvent.VK_SHIFT);
                     robot.keyPress(KeyEvent.VK_V);
                     robot.keyRelease(KeyEvent.VK_V);
-                    robot.keyRelease(KeyEvent.VK_SHIFT);			}
-                
+                    robot.keyRelease(KeyEvent.VK_SHIFT);			
+                }
+                else if(line.contains("URL")){
+                    String str = line;
+                    String[] parts = str.split("~");
+                    String url = parts[1];
+                    
+                    System.out.println("The url is: "+url);
+                    Runtime rt = Runtime.getRuntime();
+                    rt.exec( "rundll32 url.dll,FileProtocolHandler " + url);
+                }
                 
                 
                 
