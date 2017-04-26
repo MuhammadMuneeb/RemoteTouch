@@ -1,4 +1,15 @@
 import com.sun.jndi.toolkit.url.Uri;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.InetAddress;
+import java.net.NetworkInterface;
+import java.net.SocketException;
+import java.util.Enumeration;
+import java.util.Iterator;
+import java.util.StringTokenizer;
+import java.util.TreeSet;
 import java.awt.AWTException;
 import java.awt.Desktop;
 import java.awt.Image;
@@ -22,8 +33,11 @@ import java.io.PrintWriter;
 import java.net.Inet4Address;
 import java.net.InetAddress;
 import java.net.InetSocketAddress;
+import java.net.InterfaceAddress;
+import java.net.NetworkInterface;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.net.SocketException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
@@ -31,6 +45,7 @@ import java.net.UnknownHostException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
  
 public class RemoteDroidServer {
 	
@@ -42,12 +57,26 @@ public class RemoteDroidServer {
 	private static Robot robot;
 	private static final int SERVER_PORT = 8998;
         private String ipAddress;
+        static InterfaceAddress addr;
  
 	public static void main(String[] args) {
 		boolean leftpressed=false;
 		boolean rightpressed=false;
- 
-	    try{
+                
+                //Stuff to get IP
+                RemoteDroidServer rmServer = new RemoteDroidServer();
+                String yourIP = rmServer.getYourIp(rmServer
+                .getDefaultGateWayAddress());
+                if(yourIP.isEmpty()){
+                    try {
+                        yourIP = Inet4Address.getLocalHost().getHostAddress();
+                    } catch (UnknownHostException ex) {
+                        Logger.getLogger(RemoteDroidServer.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+                System.out.println("YourIP is:" +yourIP);
+                JOptionPane.showMessageDialog(null, "Enter this IP on your fone: "+yourIP);
+                try{
 	    		robot = new Robot();
 			server = new ServerSocket(SERVER_PORT); //Create a server socket on port 8998
 			client = server.accept(); //Listens for a connection to be made to this socket and accepts it
@@ -664,58 +693,88 @@ public class RemoteDroidServer {
                 
       	}
  
-//      InetAddress ip = null;
-//            try {
-//                ip = InetAddress.getLocalHost();
-//            } catch (UnknownHostException ex) {
-//                Logger.getLogger(RemoteDroidServer.class.getName()).log(Level.SEVERE, null, ex);
-//            }
-//      String add  = ip.getHostAddress();
-//      System.out.println(add);
-//            
- 
+// return ip address for which u need to do port forwarding
 }
+    private String getYourIp(String defaultAddress) {
 
-        @SuppressWarnings("Convert2Lambda")
-        public static void showGui(){
-    if(!SystemTray.isSupported()){
-        System.out.println("SystemTray is not supported");
-            return;
-    }
-//    final PopupMenu popup = new PopupMenu();
-//        final TrayIcon trayIcon =
-//                new TrayIcon(createImage("images/bulb.gif", "tray icon"));
-//        final SystemTray tray = SystemTray.getSystemTray();
-//         // Create a popup menu components
-//        MenuItem disIP = new MenuItem("Enter this in Device"+Inet4Address.getLocalHost().getHostAddress());
-//        MenuItem exitItem = new MenuItem("Exit");
-//        
-//         //Add components to popup menu
-//        popup.add(disIP);
-//        popup.add(exitItem);
-//        
-//        trayIcon.setPopupMenu(popup);
-//         exitItem.addActionListener(new ActionListener() {
-//            public void actionPerformed(ActionEvent e) {
-//                tray.remove(trayIcon);
-//                System.exit(0);
-//            }
-//
-//         
-//         });
-//                        }
-//    
-//    //Obtain the image URL
-//    protected static Image createImage(String path, String description) {
-//        URL imageURL = RemoteDroidServer.class.getResource(path);
-//        
-//        if (imageURL == null) {
-//            System.err.println("Resource not found: " + path);
-//            return null;
-//        } else {
-//            return (new ImageIcon(imageURL, description)).getImage();
-//        }
-//    }
+        String temp = defaultAddress.substring(0, 11);
+        String ipToForward = "";
 
-}
+        TreeSet<String> ipAddrs = getIpAddressList();
+        for (Iterator<String> iterator = ipAddrs.iterator(); iterator.hasNext();) {
+
+            String tempIp = iterator.next();
+            if (tempIp.contains(temp)) {
+                ipToForward = tempIp;
+                break;
+            }
+        }
+
+        return ipToForward;
+
+    }// ipForPortForwarding
+
+private TreeSet<String> getIpAddressList() {
+        TreeSet<String> ipAddrs = new TreeSet<String>();
+
+        try {
+            Enumeration<NetworkInterface> interfaces = NetworkInterface
+                    .getNetworkInterfaces();
+            while (interfaces.hasMoreElements()) {
+                NetworkInterface iface = interfaces.nextElement();
+                // filters out 127.0.0.1 and inactive interfaces
+                if (iface.isLoopback() || !iface.isUp())
+                    continue;
+
+                Enumeration<InetAddress> addresses = iface.getInetAddresses();
+                while (addresses.hasMoreElements()) {
+
+                    InetAddress addr = addresses.nextElement();
+
+                    ipAddrs.add(addr.getHostAddress());
+
+                }// 2 nd while
+            }// 1 st while
+        } catch (SocketException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+
+        return ipAddrs;
+
+    }// getIpAddressList
+
+    // get default gateway address in java
+
+    private String getDefaultGateWayAddress() {
+        String defaultAddress = "";
+        try {
+            Process result = Runtime.getRuntime().exec("netstat -rn");
+
+            BufferedReader output = new BufferedReader(new InputStreamReader(
+                    result.getInputStream()));
+
+            String line = output.readLine();
+            while (line != null) {
+                if (line.contains("0.0.0.0")) {
+
+                    StringTokenizer stringTokenizer = new StringTokenizer(line);
+                    stringTokenizer.nextElement();// first string is 0.0.0.0
+                    stringTokenizer.nextElement();// second string is 0.0.0.0
+                    defaultAddress = (String) stringTokenizer.nextElement(); // this is our default address
+                    break;
+                }
+
+                line = output.readLine();
+
+            }// while
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+
+        return defaultAddress;
+
+    }// getDefaultAddress    
+   
 }

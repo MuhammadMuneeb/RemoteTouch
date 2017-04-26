@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Point;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Environment;
@@ -25,9 +26,11 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.common.api.CommonStatusCodes;
 import com.google.android.gms.vision.Frame;
 import com.google.android.gms.vision.barcode.Barcode;
 import com.google.android.gms.vision.barcode.BarcodeDetector;
+import org.innoversetech.remotetouch.BarCodeCaptureActivity;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -50,12 +53,18 @@ public class qrScanner extends AppCompatActivity {
     Context context;
     TextView mTextView;
     Button mButton;
+    String url;
+    private static final String LOG_TAG = MainActivity.class.getSimpleName();
+    private static final int BARCODE_READER_REQUEST_CODE = 1;
+    Constants constants = new Constants();
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_qr_scanner);
-
+        context = this;
         mTextView =(TextView)findViewById(R.id.result_textview);
         mButton = (Button)findViewById(R.id.scan_barcode_button);
         mButton.setOnClickListener(new OnClickListener() {
@@ -67,6 +76,23 @@ public class qrScanner extends AppCompatActivity {
         });
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == BARCODE_READER_REQUEST_CODE) {
+            if (resultCode == CommonStatusCodes.SUCCESS) {
+                if (data != null) {
+                    Barcode barcode = data.getParcelableExtra(BarCodeCaptureActivity.BarcodeObject);
+                    Point[] p = barcode.cornerPoints;
+                    mTextView.setText(barcode.displayValue);
+                    url=barcode.displayValue;
+                    if(isConnected && out != null){
+                        out.println("URL~"+url);
+                    }
+                } else mTextView.setText(R.string.no_barcode_captured);
+            } else Log.e(LOG_TAG, String.format(getString(R.string.barcode_error_format),
+                    CommonStatusCodes.getStatusCodeString(resultCode)));
+        } else super.onActivityResult(requestCode, resultCode, data);
+    }
 
     public boolean onCreateOptionsMenu(Menu menu){
         //to inflate the menu, and adds it to the actionbar
@@ -80,7 +106,7 @@ public class qrScanner extends AppCompatActivity {
         int id = item.getItemId();
         if(id== R.id.action_connect){
             qrScanner.ConnectPhone connectPhone = new qrScanner.ConnectPhone();
-            connectPhone.execute(Constants.SERVER_IP);//Connect with server
+            connectPhone.execute(constants.getIp());//Connect with server
             return true;
         }
 

@@ -37,6 +37,7 @@ import java.net.Socket;
 
 public class Keyboard extends ActionBarActivity implements View.OnClickListener {
     Context context;
+    Constants constants = new Constants();
     //For Layout stuff
     Button keyOpener;
     //For connection stuff
@@ -537,7 +538,7 @@ public class Keyboard extends ActionBarActivity implements View.OnClickListener 
         int id = item.getItemId();
         if(id== R.id.action_connect){
             ConnectPhone connectPhone = new ConnectPhone();
-            connectPhone.execute(Constants.SERVER_IP);//Connect with server
+            connectPhone.execute(constants.getIp());//Connect with server
             return true;
         }
 

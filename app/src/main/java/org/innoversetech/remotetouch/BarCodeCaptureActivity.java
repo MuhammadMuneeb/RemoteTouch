@@ -25,6 +25,10 @@ import com.google.android.gms.vision.MultiProcessor;
 import com.google.android.gms.vision.barcode.Barcode;
 import com.google.android.gms.vision.barcode.BarcodeDetector;
 
+import org.innoversetech.remotetouch.CameraSource;
+import org.innoversetech.remotetouch.CameraSourcePreview;
+
+
 import java.io.IOException;
 
 public class BarCodeCaptureActivity extends AppCompatActivity implements BarcodeTracker.BarcodeGraphicTrackerCallback {

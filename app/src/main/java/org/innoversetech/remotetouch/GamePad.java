@@ -31,7 +31,7 @@ public class GamePad extends AppCompatActivity implements View.OnClickListener {
     Button mButton2;
     Button mButton3;
     Button mButton4;
-
+    Constants constants = new Constants();
     //For connection stuff
     private boolean isConnected=false;
     private Socket socket;
@@ -154,7 +154,7 @@ public class GamePad extends AppCompatActivity implements View.OnClickListener {
         int id = item.getItemId();
         if(id== R.id.action_connect){
             ConnectPhone connectPhone = new ConnectPhone();
-            connectPhone.execute(Constants.SERVER_IP);//Connect with server
+            connectPhone.execute(constants.getIp());//Connect with server
             return true;
         }
 

@@ -11,7 +11,7 @@
         android:id="@+id/result_textview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="No Barcode captured"
+        android:text="No QR code captured"
         android:textSize="22sp"
         android:freezesText="true"
         android:layout_centerVertical="true"
@@ -21,7 +21,7 @@
         android:id="@+id/scan_barcode_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Scan Barcode"
+        android:text="Scan Qr code"
         android:layout_below="@id/result_textview"
         android:background="@color/colorAccent" />
 </RelativeLayout>
