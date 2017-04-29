@@ -162,19 +162,13 @@ public class GamePad extends AppCompatActivity implements View.OnClickListener {
     }
 
 
-    public void onDestroy(){
-        super.onDestroy();
-        if(isConnected && out!=null){
-            try{
-                out.println("exit");//Exit the server
-                socket.close();//close the socket
-            }catch(IOException e){
-                Log.e("APP", "Error in closing the socket", e);
-            }
+    @Override
+    public void onBackPressed(){
+        super.onBackPressed();
+        if(constants.isConnected() && out!=null){
+            out.println("went_back");
         }
-
     }
-
     public class ConnectPhone extends AsyncTask<String, Void, Boolean> {
 
         @Override
@@ -198,6 +192,7 @@ public class GamePad extends AppCompatActivity implements View.OnClickListener {
                 if(isConnected){
                     //Stream to send data to server
                     out = new PrintWriter(new BufferedWriter(new OutputStreamWriter(socket.getOutputStream())), true);
+                    out.println("gamepad");
                 }
             }catch(IOException e){
                 Log.e("AppIssues", "Unable to create outwriter", e);

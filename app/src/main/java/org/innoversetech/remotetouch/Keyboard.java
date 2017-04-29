@@ -32,9 +32,6 @@ import java.net.Socket;
 
 
 
-//TODO Add more comments
-//TODO Add server functionality
-
 public class Keyboard extends ActionBarActivity implements View.OnClickListener {
     Context context;
     Constants constants = new Constants();
@@ -45,16 +42,24 @@ public class Keyboard extends ActionBarActivity implements View.OnClickListener 
     private Socket socket;
     private PrintWriter out;
     //Cursor movement
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_keyboard);
         context = this;
-        //Init the layout
+
+//        if(!constants.isConnected()) {
+//            Keyboard.ConnectPhone connectPhone = new Keyboard.ConnectPhone();
+//            connectPhone.execute(constants.getIp());
+//        }
+//        out.println("keyboard");
+//        //Init the layout
         keyOpener = (Button)findViewById(R.id.keyb);
         keyOpener.setOnClickListener(this);
+
     }
+
+
     @Override
     public boolean onKeyUp(int keyCode, KeyEvent event){
         if (isConnected && out!=null) {
@@ -537,8 +542,9 @@ public class Keyboard extends ActionBarActivity implements View.OnClickListener 
     public boolean onOptionsItemSelected(MenuItem item){
         int id = item.getItemId();
         if(id== R.id.action_connect){
-            ConnectPhone connectPhone = new ConnectPhone();
-            connectPhone.execute(constants.getIp());//Connect with server
+            Keyboard.ConnectPhone connectPhone = new Keyboard.ConnectPhone();
+            connectPhone.execute(constants.getIp());
+
             return true;
         }
 
@@ -546,19 +552,21 @@ public class Keyboard extends ActionBarActivity implements View.OnClickListener 
     }
 
 
-    public void onDestroy(){
-        super.onDestroy();
-        if(isConnected && out!=null){
-            try{
-                out.println("exit");//Exit the server
-                socket.close();//close the socket
-            }catch(IOException e){
-                Log.e("APP", "Error in closing the socket", e);
-            }
-        }
-
+    @Override
+    public void onBackPressed(){
+        super.onBackPressed();
+       try{ if(isConnected && out!=null){
+            out.println("went_back");
+           try {
+               socket.close();
+           } catch (IOException e) {
+               e.printStackTrace();
+           }
+       }
+       }catch(NullPointerException n){
+           System.out.println("I am null");
+       }
     }
-
     @Override
     public void onClick(View v) {
         switch(v.getId()) {
@@ -571,6 +579,7 @@ public class Keyboard extends ActionBarActivity implements View.OnClickListener 
             }
         }
     }
+
 
     public class ConnectPhone extends AsyncTask<String, Void, Boolean>{
 
@@ -595,6 +604,7 @@ public class Keyboard extends ActionBarActivity implements View.OnClickListener 
                 if(isConnected){
                     //Stream to send data to server
                     out = new PrintWriter(new BufferedWriter(new OutputStreamWriter(socket.getOutputStream())), true);
+                    out.println("keyboard");
                 }
             }catch(IOException e){
                 Log.e("AppIssues", "Unable to create outwriter", e);

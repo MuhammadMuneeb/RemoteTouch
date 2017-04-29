@@ -42,7 +42,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        context = this;
         mouse = (ImageButton)findViewById(R.id.Mouse);
         qrCode = (ImageButton)findViewById(R.id.qrCode);
         keyboard = (ImageButton)findViewById(R.id.keyBoard);
@@ -53,6 +52,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         keyboard.setOnClickListener(this);
         mGamepad.setOnClickListener(this);
         mIpButton.setOnClickListener(this);
+        context =this;
+
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu){
@@ -125,8 +126,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         AlertDialog alert = alertDialog.create();
         alert.show();
     }
-
-    public class ConnectPhone extends AsyncTask<String, Void, Boolean> {
+    public class ConnectPhone extends AsyncTask<String, Void, Boolean>{
 
         @Override
         protected Boolean doInBackground(String... params) {
@@ -157,5 +157,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
 
     }
+
 
 }

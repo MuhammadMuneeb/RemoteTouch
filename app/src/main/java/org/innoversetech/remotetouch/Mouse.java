@@ -39,30 +39,31 @@ public class Mouse extends ActionBarActivity implements View.OnClickListener {
     TextView scrollView;
     TextView mScroller;
     //For connection stuff
-    private boolean isConnected=false;
-    private boolean mouseMoved=false;
+    private boolean isConnected = false;
+    private boolean mouseMoved = false;
     private Socket socket;
     private PrintWriter out;
     //Cursor movement
-    private float initX =0;
-    private float initY =0;
-    private float disX =0;
-    private float disY =0;
-    private float sInitY =0;
-    private float sDisY =0;
+    private float initX = 0;
+    private float initY = 0;
+    private float disX = 0;
+    private float disY = 0;
+    private float sInitY = 0;
+    private float sDisY = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mouse);
+
         context = this;
         //Init the layout
-        mLbutton = (Button)findViewById(R.id.leftClick);
-        mRbutton = (Button)findViewById(R.id.rightClick);
-        mCopy = (Button)findViewById(R.id.copy);
-        mPaste = (Button)findViewById(R.id.paste);
-        scrollView = (TextView)findViewById(R.id.mousePad);
-        mScroller = (TextView)findViewById(R.id.mousePadScroller);
+        mLbutton = (Button) findViewById(R.id.leftClick);
+        mRbutton = (Button) findViewById(R.id.rightClick);
+        mCopy = (Button) findViewById(R.id.copy);
+        mPaste = (Button) findViewById(R.id.paste);
+        scrollView = (TextView) findViewById(R.id.mousePad);
+        mScroller = (TextView) findViewById(R.id.mousePadScroller);
         //Setting the on click listeners for the buttons
         mLbutton.setOnClickListener(this);
         mRbutton.setOnClickListener(this);
@@ -102,53 +103,70 @@ public class Mouse extends ActionBarActivity implements View.OnClickListener {
             }
         });
 
-            mScroller.setOnTouchListener(new View.OnTouchListener() {
-                @Override
-                public boolean onTouch(View v, MotionEvent event) {
-                    if(isConnected && out!=null){
-                        switch(event.getAction()){
-                            case MotionEvent.ACTION_DOWN:
-                                sInitY = event.getY();
-                                mouseMoved = false;
-                                break;
-                            case MotionEvent.ACTION_MOVE:
-                                sDisY = event.getY()-sInitY;
-                                initY = event.getY();
-                                if(sDisY != 0){
-                                    out.println(sDisY +"div" + sDisY);
-                                    System.out.println("Co-ordinates are:"+ sDisY);
-                                }
-                                mouseMoved = true;
-                                break;
-                        }
+        mScroller.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if (isConnected && out != null) {
+                    switch (event.getAction()) {
+                        case MotionEvent.ACTION_DOWN:
+                            sInitY = event.getY();
+                            mouseMoved = false;
+                            break;
+                        case MotionEvent.ACTION_MOVE:
+                            sDisY = event.getY() - sInitY;
+                            initY = event.getY();
+                            if (sDisY != 0) {
+                                out.println(sDisY + "div" + sDisY);
+                                System.out.println("Co-ordinates are:" + sDisY);
+                            }
+                            mouseMoved = true;
+                            break;
                     }
-
-
-
-                    return true;
                 }
-            });
 
+
+                return true;
             }
+        });
+
+    }
+
     @Override
-    public boolean onCreateOptionsMenu(Menu menu){
-    //to inflate the menu, and adds it to the actionbar
+    public boolean onCreateOptionsMenu(Menu menu) {
+        //to inflate the menu, and adds it to the actionbar
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.menu_main, menu);
         return true;
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item){
+    public void onBackPressed() {
+        super.onBackPressed();
+        try {
+            if (isConnected && out != null) {
+                out.println("went_back");
+                socket.close();
+            }
+        } catch (NullPointerException n) {
+            System.out.println("I am null");
+        } catch (IOException i) {
+            System.out.println("I am fed up of this");
+        }
+
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-        if(id== R.id.action_connect){
+        if (id == R.id.action_connect) {
             ConnectPhone connectPhone = new ConnectPhone();
             connectPhone.execute(constants.getIp());//Connect with server
+
             return true;
         }
 
         return super.onOptionsItemSelected(item);
-    }
+}
 
 
     @Override
@@ -177,18 +195,18 @@ public class Mouse extends ActionBarActivity implements View.OnClickListener {
         }
 
     }
-    public void onDestroy(){
-        super.onDestroy();
-        if(isConnected && out!=null){
-            try{
-                out.println("exit");//Exit the server
-                socket.close();//close the socket
-            }catch(IOException e){
-                Log.e("APP", "Error in closing the socket", e);
-            }
-        }
-
-    }
+//    public void onDestroy(){
+//        super.onDestroy();
+//        if(isConnected && out!=null){
+//            try{
+//                out.println("exit");//Exit the server
+//                socket.close();//close the socket
+//            }catch(IOException e){
+//                Log.e("APP", "Error in closing the socket", e);
+//            }
+//        }
+//
+//    }
 
     public class ConnectPhone extends AsyncTask<String, Void, Boolean>{
 
@@ -213,6 +231,7 @@ public class Mouse extends ActionBarActivity implements View.OnClickListener {
                 if(isConnected){
                     //Stream to send data to server
                     out = new PrintWriter(new BufferedWriter(new OutputStreamWriter(socket.getOutputStream())), true);
+                    out.println("MOUSE");
                 }
             }catch(IOException e){
                 Log.e("AppIssues", "Unable to create outwriter", e);

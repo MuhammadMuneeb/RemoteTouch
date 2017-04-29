@@ -4,6 +4,15 @@ package org.innoversetech.remotetouch;
 public class Constants {
     private static String Ip;
     public static final int SERVER_PORT = 8998;
+    private boolean isConnected;
+
+    public boolean isConnected() {
+        return isConnected;
+    }
+
+    public void setConnected(boolean connected) {
+        isConnected = connected;
+    }
 
     public static String getIp() {
         return Ip;
@@ -12,6 +21,8 @@ public class Constants {
     public static void setIp(String ip) {
         Ip = ip;
     }
+
+    public static final String KEYBOARD = "keyboard";
 
     //For mouse
     public static final String MOUSE_RIGHT_CLICK="right_click";
