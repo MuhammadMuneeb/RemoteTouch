@@ -29,6 +29,8 @@ dependencies {
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     compile 'com.google.zxing:zxing-parent:3.3.0'
     compile 'com.google.android.gms:play-services-vision:9.6.1'
+    compile 'com.andretietz.android:gamecontroller:1.1.0'
+
     testCompile 'junit:junit:4.12'
 }
 

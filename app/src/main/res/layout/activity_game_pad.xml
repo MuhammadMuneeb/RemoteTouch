@@ -1,133 +1,116 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:id="@+id/rootRL">
+    android:layout_height="match_parent">
 
+<RelativeLayout
+    android:id="@+id/rootRL"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
-    <Button
-        android:id="@+id/but1"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Button"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginStart="64dp"
-        android:layout_marginTop="18dp" />
+        android:orientation="horizontal"
+        android:layout_margin="10sp"
+        android:weightSum="100"
+        android:id="@+id/row1">
 
-    <Button
-        android:id="@+id/but2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/but1"
-        android:layout_marginStart="48dp"
-        android:layout_toEndOf="@+id/but1"
-        android:text="Button" />
+        <Button
+            android:id="@+id/but1"
+            android:layout_width="0sp"
+            android:layout_height="wrap_content"
+            android:layout_weight="50"
+            android:text="Button" />
 
-    <Button
-        android:id="@+id/but3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/but1"
-        android:layout_below="@+id/but1"
-        android:layout_marginTop="14dp"
-        android:text="Button" />
+        <Button
+            android:id="@+id/but2"
+            android:layout_width="0sp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:text="Button"
+            android:layout_weight="50"/>
+    </LinearLayout>
 
-    <Button
-        android:id="@+id/but4"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/but2"
-        android:layout_alignTop="@+id/but3"
-        android:text="Button" />
+        android:orientation="horizontal"
+        android:layout_margin="10sp"
+        android:weightSum="100"
+        android:id="@+id/row2"
+        android:layout_below="@id/row1">
 
-    <Button
-        android:id="@+id/up"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="33dp"
-        android:text="Up"
-        android:layout_alignBottom="@+id/right"
-        android:layout_toStartOf="@+id/right" />
+        <Button
+            android:id="@+id/but3"
+            android:layout_width="0sp"
+            android:layout_height="wrap_content"
+            android:text="Button"
+            android:layout_weight="50"/>
 
-    <Button
-        android:id="@+id/left"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Left"
-        android:layout_above="@+id/Down"
-        android:layout_toStartOf="@+id/Down" />
+        <Button
+            android:id="@+id/but4"
+            android:layout_width="0sp"
+            android:layout_height="wrap_content"
+            android:text="Button"
+            android:layout_weight="50"/>
 
-    <Button
-        android:id="@+id/right"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Right"
-        android:layout_above="@+id/Down"
-        android:layout_toEndOf="@+id/start"
-        android:layout_marginBottom="18dp" />
+            </LinearLayout>
 
-    <Button
-        android:id="@+id/Down"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Down"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="16dp" />
+        android:orientation="horizontal"
+        android:layout_margin="30sp"
+        android:weightSum="100"
+        android:id="@+id/row3"
+        android:layout_below="@id/row2">
 
-    <Button
-        android:id="@+id/select"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="31dp"
-        android:text="Select"
-        android:layout_below="@+id/but3"
-        android:layout_alignEnd="@+id/left"
-        android:layout_marginEnd="20dp" />
 
-    <Button
-        android:id="@+id/start"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Start"
-        android:layout_marginStart="16dp"
-        android:layout_alignBaseline="@+id/select"
-        android:layout_alignBottom="@+id/select"
-        android:layout_toEndOf="@+id/but3" />
+        <Button
+            android:id="@+id/select"
+            android:layout_weight="50"
+            android:layout_width="0sp"
+            android:layout_height="wrap_content"
+            android:text="Select" />
 
-    <Button
-        android:id="@+id/button4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:layout_toStartOf="@+id/up"
-        android:text="Button" />
+        <Button
+            android:id="@+id/start"
+            android:layout_weight="50"
+            android:layout_width="0sp"
+            android:layout_height="wrap_content"
+            android:text="Start" />
+        </LinearLayout>
 
-    <Button
-        android:id="@+id/button5"
+    <LinearLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/button4"
-        android:layout_marginStart="11dp"
-        android:layout_toEndOf="@+id/button4"
-        android:text="Button" />
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:weightSum="100"
+        android:layout_below="@id/row3"
+        android:layout_margin="10sp">
+        <com.andretietz.android.controller.DirectionView
+            android:id="@+id/viewDirection"
+            android:layout_width="0sp"
+            android:layout_weight="50"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"/>
 
-    <Button
-        android:id="@+id/button6"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/button4"
-        android:layout_below="@+id/button4"
-        android:text="Button" />
+        <com.andretietz.android.controller.ActionView
+            android:id="@+id/viewAction"
+            android:layout_width="0sp"
+            android:layout_height="wrap_content"
+            android:layout_weight="50"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
 
-    <Button
-        android:id="@+id/button7"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/button5"
-        android:layout_below="@+id/button5"
-        android:text="Button" />
+
+    </LinearLayout>
 
 </RelativeLayout>
+
+</ScrollView>

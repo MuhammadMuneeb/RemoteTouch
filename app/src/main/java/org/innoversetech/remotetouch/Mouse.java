@@ -1,6 +1,7 @@
 package org.innoversetech.remotetouch;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.provider.SyncStateContract;
 import android.support.v7.app.ActionBar;
@@ -136,7 +137,7 @@ public class Mouse extends ActionBarActivity implements View.OnClickListener {
     public boolean onCreateOptionsMenu(Menu menu) {
         //to inflate the menu, and adds it to the actionbar
         MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu_main, menu);
+        inflater.inflate(R.menu.keyboard_shortcut, menu);
         return true;
     }
 
@@ -159,10 +160,20 @@ public class Mouse extends ActionBarActivity implements View.OnClickListener {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-        if (id == R.id.action_connect) {
-            ConnectPhone connectPhone = new ConnectPhone();
-            connectPhone.execute(constants.getIp());//Connect with server
-
+        if (id == R.id.goto_keyboard) {
+            Intent int1 = new Intent(Mouse.this, Keyboard.class);
+            try{ if(isConnected && out!=null){
+                out.println("openKeyboard");
+                try {
+                    socket.close();
+                    startActivity(int1);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+            }catch(NullPointerException n){
+                System.out.println("I am null in mouse");
+            }
             return true;
         }
 
@@ -196,18 +207,6 @@ public class Mouse extends ActionBarActivity implements View.OnClickListener {
         }
 
     }
-//    public void onDestroy(){
-//        super.onDestroy();
-//        if(isConnected && out!=null){
-//            try{
-//                out.println("exit");//Exit the server
-//                socket.close();//close the socket
-//            }catch(IOException e){
-//                Log.e("APP", "Error in closing the socket", e);
-//            }
-//        }
-//
-//    }
 
     public class ConnectPhone extends AsyncTask<String, Void, Boolean>{
 

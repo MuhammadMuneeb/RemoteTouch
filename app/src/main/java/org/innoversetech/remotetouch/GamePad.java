@@ -13,6 +13,10 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.andretietz.android.controller.ActionView;
+import com.andretietz.android.controller.DirectionView;
+import com.andretietz.android.controller.InputView;
+
 import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
@@ -20,13 +24,9 @@ import java.io.PrintWriter;
 import java.net.InetAddress;
 import java.net.Socket;
 
-public class GamePad extends AppCompatActivity implements View.OnClickListener {
+public class GamePad extends AppCompatActivity implements View.OnClickListener, InputView.InputEventListener {
     Context context;
     //For Layout stuff
-    Button upButton;
-    Button downButton;
-    Button leftButton;
-    Button rightButton;
     Button mButton1;
     Button mButton2;
     Button mButton3;
@@ -42,25 +42,38 @@ public class GamePad extends AppCompatActivity implements View.OnClickListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game_pad);
         context = this;
-        upButton = (Button)findViewById(R.id.up);
-        downButton = (Button)findViewById(R.id.Down);
-        leftButton= (Button)findViewById(R.id.left);
-        rightButton = (Button)findViewById(R.id.right);
         mButton1 = (Button)findViewById(R.id.but1);
         mButton2 = (Button)findViewById(R.id.but2);
         mButton3 = (Button)findViewById(R.id.but3);
         mButton4 = (Button)findViewById(R.id.but4);
         //Set listeners
-        upButton.setOnClickListener(this);
-        downButton.setOnClickListener(this);
-        leftButton.setOnClickListener(this);
-        rightButton.setOnClickListener(this);
 
         mButton1.setOnClickListener(this);
         mButton2.setOnClickListener(this);
         mButton3.setOnClickListener(this);
         mButton4.setOnClickListener(this);
 
+        final ActionView actionView = (ActionView) findViewById(R.id.viewAction);
+        actionView.setOnButtonListener(new InputView.InputEventListener(){
+
+            @Override
+            public void onInputEvent(View view, int buttons) {
+                int i = 0;
+                if (isConnected && out != null) {// if the bit on position i is set
+                    if (((0x01 << 1) & buttons) > 0) {
+                        out.println(Constants.key_x);
+                    } else if (((0x01 << 2) & buttons) > 1) {
+                        out.println(Constants.key_y);
+                    } else if (((0x01 << 3) & buttons) > 2) {
+                        out.println(Constants.key_z);
+                    } else if (((0x01 << 0) & buttons) ==0) {
+                        out.println(Constants.key_v);
+                    }
+                }
+            }
+        });
+        DirectionView directionView = (DirectionView) findViewById(R.id.viewDirection);
+        directionView.setOnButtonListener(this);
         ConnectPhone connectPhone = new ConnectPhone();
         connectPhone.execute(constants.getIp());//Connect with server
 
@@ -69,26 +82,6 @@ public class GamePad extends AppCompatActivity implements View.OnClickListener {
     @Override
     public void onClick(View v) {
         switch (v.getId()){
-            case R.id.up:
-                if(isConnected && out != null){
-                    out.println(Constants.key_w);
-                }
-                break;
-            case R.id.Down:
-                if(isConnected && out != null){
-                    out.println(Constants.key_s);
-                }
-                break;
-            case R.id.left:
-                if(isConnected && out != null){
-                    out.println(Constants.key_a);
-                }
-                break;
-            case R.id.right:
-                if(isConnected && out != null){
-                    out.println(Constants.key_d);
-                }
-                break;
             case R.id.but1:
                 if(isConnected && out != null){
                     out.println(Constants.key_u);
@@ -119,32 +112,16 @@ public class GamePad extends AppCompatActivity implements View.OnClickListener {
                     out.println(Constants.key_enter);
                 }
                 break;
-            case R.id.button4:
-                if(isConnected && out != null){
-                    out.println(Constants.key_q);
-                }
-                break;
-            case R.id.button5:
-                if(isConnected && out != null){
-                    out.println(Constants.key_e);
-                }
-                break;
-            case R.id.button6:
-                if(isConnected && out != null){
-                    out.println(Constants.key_r);
-                }
-                break;
-            case R.id.button7:
-                if(isConnected && out != null){
-                    out.println(Constants.key_m);
-                }
-                break;
 
 
 
         }
 
     }
+
+
+
+
 
     public boolean onCreateOptionsMenu(Menu menu){
         //to inflate the menu, and adds it to the actionbar
@@ -175,11 +152,39 @@ public class GamePad extends AppCompatActivity implements View.OnClickListener {
                 socket.close();
             }
         } catch (NullPointerException n) {
-            System.out.println("I am null");
+            System.out.println("I am null in gamepad");
         } catch (IOException i) {
-            System.out.println("I am fed up of this");
+            System.out.println("Null in gamepad");
         }
     }
+
+    @Override
+    public void onInputEvent(View view, int buttons) {
+        switch (buttons & 0xff) {
+            case DirectionView.DIRECTION_DOWN:
+                if(isConnected && out != null){
+                    out.println(Constants.key_s);
+                }
+                break;
+            case DirectionView.DIRECTION_LEFT:
+                if(isConnected && out != null){
+                    out.println(Constants.key_a);
+                }
+                break;
+            case DirectionView.DIRECTION_RIGHT:
+                if(isConnected && out != null){
+                    out.println(Constants.key_d);
+                }
+                break;
+            case DirectionView.DIRECTION_UP:
+                if(isConnected && out != null){
+                    out.println(Constants.key_w);
+                }
+                break;
+
+        }
+    }
+
     public class ConnectPhone extends AsyncTask<String, Void, Boolean> {
 
         @Override

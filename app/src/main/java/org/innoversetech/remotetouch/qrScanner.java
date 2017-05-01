@@ -126,9 +126,9 @@ public class qrScanner extends AppCompatActivity {
                 socket.close();
             }
         } catch (NullPointerException n) {
-            System.out.println("I am null");
+            System.out.println("I am null in qr scanner");
         } catch (IOException i) {
-            System.out.println("I am fed up of this");
+            System.out.println("I am null in qr scanner");
         }
     }
 

@@ -1,6 +1,7 @@
 package org.innoversetech.remotetouch;
 
 import android.content.Context;
+import android.content.Intent;
 import android.inputmethodservice.KeyboardView;
 import android.os.AsyncTask;
 import android.provider.SyncStateContract;
@@ -20,6 +21,7 @@ import android.view.View.OnKeyListener;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -36,7 +38,7 @@ public class Keyboard extends ActionBarActivity implements View.OnClickListener 
     Context context;
     Constants constants = new Constants();
     //For Layout stuff
-    Button keyOpener;
+    ImageButton keyOpener;
     //For connection stuff
     private boolean isConnected=false;
     private Socket socket;
@@ -48,7 +50,7 @@ public class Keyboard extends ActionBarActivity implements View.OnClickListener 
         setContentView(R.layout.activity_keyboard);
         context = this;
 
-        keyOpener = (Button)findViewById(R.id.keyb);
+        keyOpener = (ImageButton)findViewById(R.id.keyb);
         keyOpener.setOnClickListener(this);
 
         Keyboard.ConnectPhone connectPhone = new Keyboard.ConnectPhone();
@@ -532,17 +534,27 @@ public class Keyboard extends ActionBarActivity implements View.OnClickListener 
     public boolean onCreateOptionsMenu(Menu menu){
         //to inflate the menu, and adds it to the actionbar
         MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu_main, menu);
+        inflater.inflate(R.menu.mouse_shortcut, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item){
         int id = item.getItemId();
-        if(id== R.id.action_connect){
-            Keyboard.ConnectPhone connectPhone = new Keyboard.ConnectPhone();
-            connectPhone.execute(constants.getIp());
-
+        if(id== R.id.goto_mouse){
+            Intent int1 = new Intent(Keyboard.this, Mouse.class);
+            try{ if(isConnected && out!=null){
+                out.println("openMouse");
+                try {
+                    socket.close();
+                    startActivity(int1);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+            }catch(NullPointerException n){
+                System.out.println("I am null in keyboard");
+            }
             return true;
         }
 

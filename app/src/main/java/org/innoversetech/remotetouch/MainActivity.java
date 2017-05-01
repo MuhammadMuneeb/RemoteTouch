@@ -131,6 +131,20 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
+        public void onDestroy(){
+        super.onDestroy();
+        if(isConnected && out!=null){
+            try{
+                out.println("exit");//Exit the server
+                socket.close();//close the socket
+            }catch(IOException e){
+                Log.e("APP", "Error in closing the socket", e);
+            }
+        }
+
+    }
+
+
     private void setIp() {
         final String[] ip = new String[1];
         LayoutInflater layoutInflater = LayoutInflater.from(MainActivity.this);
