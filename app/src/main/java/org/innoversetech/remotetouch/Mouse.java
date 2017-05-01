@@ -128,7 +128,8 @@ public class Mouse extends ActionBarActivity implements View.OnClickListener {
                 return true;
             }
         });
-
+        ConnectPhone connectPhone = new ConnectPhone();
+        connectPhone.execute(constants.getIp());
     }
 
     @Override
@@ -231,8 +232,7 @@ public class Mouse extends ActionBarActivity implements View.OnClickListener {
                 if(isConnected){
                     //Stream to send data to server
                     out = new PrintWriter(new BufferedWriter(new OutputStreamWriter(socket.getOutputStream())), true);
-                    out.println("MOUSE");
-                }
+                  }
             }catch(IOException e){
                 Log.e("AppIssues", "Unable to create outwriter", e);
                 Toast.makeText(context, "Error while connecting", Toast.LENGTH_LONG).show();

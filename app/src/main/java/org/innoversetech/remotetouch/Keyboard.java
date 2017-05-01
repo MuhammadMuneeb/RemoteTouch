@@ -48,14 +48,12 @@ public class Keyboard extends ActionBarActivity implements View.OnClickListener 
         setContentView(R.layout.activity_keyboard);
         context = this;
 
-//        if(!constants.isConnected()) {
-//            Keyboard.ConnectPhone connectPhone = new Keyboard.ConnectPhone();
-//            connectPhone.execute(constants.getIp());
-//        }
-//        out.println("keyboard");
-//        //Init the layout
         keyOpener = (Button)findViewById(R.id.keyb);
         keyOpener.setOnClickListener(this);
+
+        Keyboard.ConnectPhone connectPhone = new Keyboard.ConnectPhone();
+        connectPhone.execute(constants.getIp());
+
 
     }
 
@@ -604,8 +602,7 @@ public class Keyboard extends ActionBarActivity implements View.OnClickListener 
                 if(isConnected){
                     //Stream to send data to server
                     out = new PrintWriter(new BufferedWriter(new OutputStreamWriter(socket.getOutputStream())), true);
-                    out.println("keyboard");
-                }
+                    }
             }catch(IOException e){
                 Log.e("AppIssues", "Unable to create outwriter", e);
                 Toast.makeText(context, "Error while connecting", Toast.LENGTH_LONG).show();

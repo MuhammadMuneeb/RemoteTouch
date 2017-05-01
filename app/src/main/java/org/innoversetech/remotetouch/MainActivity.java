@@ -54,6 +54,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mIpButton.setOnClickListener(this);
         context =this;
 
+
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu){
@@ -62,7 +63,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         inflater.inflate(R.menu.menu_main, menu);
         return true;
     }
-
     @Override
     public boolean onOptionsItemSelected(MenuItem item){
         int id = item.getItemId();
@@ -77,23 +77,54 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
     @Override
+    public void onResume(){
+        super.onResume();
+        MainActivity.ConnectPhone connectPhone = new MainActivity.ConnectPhone();
+        connectPhone.execute(constants.getIp());
+    }
+
+    @Override
     public void onClick(View v) {
         switch(v.getId()){
             case R.id.Mouse:
                 Intent intent = new Intent(MainActivity.this, Mouse.class);
-                startActivity(intent);
+                if(isConnected){
+                    out.println("mouse");
+                    startActivity(intent);
+                }
+                else{
+                    Toast.makeText(context, "Connect your device to use", Toast.LENGTH_SHORT).show();
+                }
                 break;
             case R.id.qrCode:
                 Intent in2 = new Intent(MainActivity.this, qrScanner.class);
-                startActivity(in2);
+                if(isConnected){
+                    out.println("qrCode");
+                    startActivity(in2);
+                }
+                else{
+                    Toast.makeText(context, "Connect your device to use", Toast.LENGTH_SHORT).show();
+                }
                 break;
             case R.id.keyBoard:
                 Intent in3 = new Intent(MainActivity.this, Keyboard.class);
-                startActivity(in3);
+                if(isConnected){
+                    out.println("keyboard");
+                    startActivity(in3);
+                }
+                else{
+                    Toast.makeText(context, "Connect your device to use", Toast.LENGTH_SHORT).show();
+                }
                 break;
             case R.id.gamePad:
                 Intent in4 = new Intent(MainActivity.this, GamePad.class);
-                startActivity(in4);
+                if(isConnected){
+                    out.println("gamepad");
+                    startActivity(in4);
+                }
+                else{
+                    Toast.makeText(context, "Connect your device to use", Toast.LENGTH_SHORT).show();
+                }
                 break;
             case R.id.ipAdd:
                 setIp();

@@ -60,6 +60,10 @@ public class GamePad extends AppCompatActivity implements View.OnClickListener {
         mButton2.setOnClickListener(this);
         mButton3.setOnClickListener(this);
         mButton4.setOnClickListener(this);
+
+        ConnectPhone connectPhone = new ConnectPhone();
+        connectPhone.execute(constants.getIp());//Connect with server
+
     }
 
     @Override
@@ -165,8 +169,15 @@ public class GamePad extends AppCompatActivity implements View.OnClickListener {
     @Override
     public void onBackPressed(){
         super.onBackPressed();
-        if(constants.isConnected() && out!=null){
-            out.println("went_back");
+        try {
+            if (isConnected && out != null) {
+                out.println("went_back");
+                socket.close();
+            }
+        } catch (NullPointerException n) {
+            System.out.println("I am null");
+        } catch (IOException i) {
+            System.out.println("I am fed up of this");
         }
     }
     public class ConnectPhone extends AsyncTask<String, Void, Boolean> {
@@ -192,7 +203,6 @@ public class GamePad extends AppCompatActivity implements View.OnClickListener {
                 if(isConnected){
                     //Stream to send data to server
                     out = new PrintWriter(new BufferedWriter(new OutputStreamWriter(socket.getOutputStream())), true);
-                    out.println("gamepad");
                 }
             }catch(IOException e){
                 Log.e("AppIssues", "Unable to create outwriter", e);

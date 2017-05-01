@@ -74,6 +74,9 @@ public class qrScanner extends AppCompatActivity {
                 startActivityForResult(intent, BARCODE_RESULT_REQUEST_CODE);
             }
         });
+        qrScanner.ConnectPhone connectPhone = new qrScanner.ConnectPhone();
+        connectPhone.execute(constants.getIp());//Connect with server
+
 
     }
 
@@ -117,8 +120,15 @@ public class qrScanner extends AppCompatActivity {
     @Override
     public void onBackPressed(){
         super.onBackPressed();
-        if(constants.isConnected() && out!=null){
-            out.println("went_back");
+        try {
+            if (isConnected && out != null) {
+                out.println("went_back");
+                socket.close();
+            }
+        } catch (NullPointerException n) {
+            System.out.println("I am null");
+        } catch (IOException i) {
+            System.out.println("I am fed up of this");
         }
     }
 
@@ -145,7 +155,6 @@ public class qrScanner extends AppCompatActivity {
                 if(isConnected){
                     //Stream to send data to server
                     out = new PrintWriter(new BufferedWriter(new OutputStreamWriter(socket.getOutputStream())), true);
-                    out.println("qrscanner");
                 }
             }catch(IOException e){
                 Log.e("AppIssues", "Unable to create outwriter", e);
