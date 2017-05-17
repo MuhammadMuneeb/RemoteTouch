@@ -99,7 +99,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.qrCode:
                 Intent in2 = new Intent(MainActivity.this, qrScanner.class);
                 if(isConnected){
-                    out.println("qrCode");
+                    out.println("qrScanner");
                     startActivity(in2);
                 }
                 else{

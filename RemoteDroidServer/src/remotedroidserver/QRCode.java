@@ -1,10 +1,10 @@
-/*
+    /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
 package remotedroidserver;
-
+import java.net.HttpURLConnection;
 import java.awt.AWTException;
 import java.awt.Robot;
 import java.io.BufferedReader;
@@ -13,6 +13,7 @@ import java.io.InputStreamReader;
 import java.net.InterfaceAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.net.URLConnection;
 
 /**
  *
@@ -55,7 +56,10 @@ public static void actions(){
                     String url = parts[1];
                     
                     System.out.println("The url is: "+url);
-                    Runtime rt = Runtime.getRuntime();
+//                    URLConnection myURLConnection = myURL.openConnection();
+//                    myURLConnection.connect();
+                  
+Runtime rt = Runtime.getRuntime();
                     rt.exec( "rundll32 url.dll,FileProtocolHandler " + url);
                         }else if(line.equalsIgnoreCase("went_back")){
                                 isConnected = false;

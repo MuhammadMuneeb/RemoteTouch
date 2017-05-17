@@ -2,12 +2,6 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group>
-            <file>file:/D:/Code/Android/RemoteTouch/RemoteDroidServer/src/remotedroidserver/Mouse.java</file>
-            <file>file:/D:/Code/Android/RemoteTouch/RemoteDroidServer/src/remotedroidserver/QRCode.java</file>
-            <file>file:/D:/Code/Android/RemoteTouch/RemoteDroidServer/src/remotedroidserver/Keyboard.java</file>
-            <file>file:/D:/Code/Android/RemoteTouch/RemoteDroidServer/src/remotedroidserver/Gamepad.java</file>
-            <file>file:/D:/Code/Android/RemoteTouch/RemoteDroidServer/src/remotedroidserver/Server.java</file>
-        </group>
+        <group/>
     </open-files>
 </project-private>

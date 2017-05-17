@@ -91,6 +91,7 @@ public class qrScanner extends AppCompatActivity {
                     url=barcode.displayValue;
                     if(isConnected && out != null){
                         out.println("URL~"+url);
+                        System.out.println("Url is"+url);
                     }
                 } else mTextView.setText(R.string.no_barcode_captured);
             } else Log.e(LOG_TAG, String.format(getString(R.string.barcode_error_format),
