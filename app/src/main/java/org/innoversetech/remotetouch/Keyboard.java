@@ -548,6 +548,7 @@ public class Keyboard extends ActionBarActivity implements View.OnClickListener 
                 try {
                     socket.close();
                     startActivity(int1);
+                    finish();
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -565,10 +566,13 @@ public class Keyboard extends ActionBarActivity implements View.OnClickListener 
     @Override
     public void onBackPressed(){
         super.onBackPressed();
+        Intent in = new Intent(Keyboard.this, MainActivity.class);
        try{ if(isConnected && out!=null){
             out.println("went_back");
            try {
                socket.close();
+               startActivity(in);
+               finish();
            } catch (IOException e) {
                e.printStackTrace();
            }

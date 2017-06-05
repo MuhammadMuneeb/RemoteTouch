@@ -26,7 +26,7 @@ public class Keyboard {
 	private static String line;
 	private static boolean isConnected=true;
 	private static Robot robot;
-	private static final int SERVER_PORT = 8998;
+	private static final int SERVER_PORT = 11258;
         private String ipAddress;
         static InterfaceAddress addr;
 
@@ -408,8 +408,10 @@ public static void actions(){
                                 robot.keyRelease(KeyEvent.VK_SHIFT);
                         } 
                         else if(line.equalsIgnoreCase("@")){
-                                robot.keyPress(KeyEvent.VK_AT);
-                                robot.keyRelease(KeyEvent.VK_AT);
+                                robot.keyPress(KeyEvent.VK_SHIFT);
+                                robot.keyPress(KeyEvent.VK_2);
+                                robot.keyRelease(KeyEvent.VK_2);
+                                robot.keyRelease(KeyEvent.VK_SHIFT);
                                 }
                         else if(line.equalsIgnoreCase("#")){
                                 robot.keyPress(KeyEvent.VK_SHIFT);
@@ -481,14 +483,14 @@ public static void actions(){
                         }
                         else if(line.equalsIgnoreCase("{")){
                                 robot.keyPress(KeyEvent.VK_SHIFT);
-                                robot.keyPress(KeyEvent.VK_BRACELEFT);
-                                robot.keyRelease(KeyEvent.VK_BRACELEFT);
+                                robot.keyPress(KeyEvent.VK_OPEN_BRACKET);
+                                robot.keyRelease(KeyEvent.VK_OPEN_BRACKET);
                                 robot.keyRelease(KeyEvent.VK_SHIFT);
                         }
                         else if(line.equalsIgnoreCase("}")){
                                 robot.keyPress(KeyEvent.VK_SHIFT);
-                                robot.keyPress(KeyEvent.VK_BRACERIGHT);
-                                robot.keyRelease(KeyEvent.VK_BRACERIGHT);
+                                robot.keyPress(KeyEvent.VK_CLOSE_BRACKET);
+                                robot.keyRelease(KeyEvent.VK_CLOSE_BRACKET);
                                 robot.keyRelease(KeyEvent.VK_SHIFT);
                         }
                         else if(line.equalsIgnoreCase(":")){
@@ -497,9 +499,11 @@ public static void actions(){
                                 robot.keyRelease(KeyEvent.VK_SEMICOLON);
                                 robot.keyRelease(KeyEvent.VK_SHIFT);
                         }
-                        else if(line.equalsIgnoreCase("\"")){
-                                robot.keyPress(KeyEvent.VK_QUOTEDBL);
-                                robot.keyRelease(KeyEvent.VK_QUOTEDBL);
+                        else if(line.equalsIgnoreCase("dblQuote")){
+                                robot.keyPress(KeyEvent.VK_SHIFT);
+                                robot.keyPress(KeyEvent.VK_QUOTE);
+                                robot.keyRelease(KeyEvent.VK_QUOTE);
+                                robot.keyRelease(KeyEvent.VK_SHIFT);
                         }
                         else if(line.equalsIgnoreCase("<")){
                                 robot.keyPress(KeyEvent.VK_SHIFT);
@@ -520,12 +524,12 @@ public static void actions(){
                                 robot.keyRelease(KeyEvent.VK_SHIFT);
                         }
                         else if(line.equalsIgnoreCase("[")){
-                                robot.keyPress(KeyEvent.VK_BRACELEFT);
-                                robot.keyRelease(KeyEvent.VK_BRACELEFT);
+                                robot.keyPress(KeyEvent.VK_OPEN_BRACKET);
+                                robot.keyRelease(KeyEvent.VK_OPEN_BRACKET);
                         }
                         else if(line.equalsIgnoreCase("]")){
-                                robot.keyPress(KeyEvent.VK_BRACERIGHT);
-                                robot.keyRelease(KeyEvent.VK_BRACERIGHT);
+                                robot.keyPress(KeyEvent.VK_CLOSE_BRACKET);
+                                robot.keyRelease(KeyEvent.VK_CLOSE_BRACKET);
                         }
                         
                         else if(line.equalsIgnoreCase(";")){
@@ -548,7 +552,7 @@ public static void actions(){
                                 robot.keyPress(KeyEvent.VK_SLASH);
                                 robot.keyRelease(KeyEvent.VK_SLASH);
                         }
-                        else if(line.equalsIgnoreCase("\\")){
+                        else if(line.equalsIgnoreCase("backSlash")){
                                 robot.keyPress(KeyEvent.VK_BACK_SLASH);
                                 robot.keyRelease(KeyEvent.VK_BACK_SLASH);
                         }

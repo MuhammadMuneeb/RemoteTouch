@@ -144,15 +144,18 @@ public class Mouse extends ActionBarActivity implements View.OnClickListener {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
+        Intent in = new Intent(Mouse.this, MainActivity.class);
         try {
             if (isConnected && out != null) {
                 out.println("went_back");
                 socket.close();
+                startActivity(in);
+                finish();
             }
         } catch (NullPointerException n) {
-            System.out.println("I am null");
+            System.out.println(n.getMessage());
         } catch (IOException i) {
-            System.out.println("I am fed up of this");
+            System.out.println(i.getMessage());
         }
 
     }
@@ -167,6 +170,7 @@ public class Mouse extends ActionBarActivity implements View.OnClickListener {
                 try {
                     socket.close();
                     startActivity(int1);
+                    finish();
                 } catch (IOException e) {
                     e.printStackTrace();
                 }

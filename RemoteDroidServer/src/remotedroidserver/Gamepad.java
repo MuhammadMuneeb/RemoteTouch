@@ -26,12 +26,13 @@ public class Gamepad {
 	private static String line;
 	private static boolean isConnected=true;
 	private static Robot robot;
-	private static final int SERVER_PORT = 8998;
+	private static final int SERVER_PORT = 11258;
         private String ipAddress;
         static InterfaceAddress addr;
 
 public static void actions(){
                     try{
+                        isConnected = true;
 	    		robot = new Robot();
 			server = new ServerSocket(SERVER_PORT); //Create a server socket on port 8998
 			client = server.accept(); //Listens for a connection to be made to this socket and accepts it

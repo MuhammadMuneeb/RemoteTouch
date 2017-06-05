@@ -6,6 +6,7 @@
 package remotedroidserver;
 import java.net.HttpURLConnection;
 import java.awt.AWTException;
+import java.awt.Desktop;
 import java.awt.Robot;
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -13,6 +14,7 @@ import java.io.InputStreamReader;
 import java.net.InterfaceAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.net.URI;
 import java.net.URLConnection;
 
 /**
@@ -26,12 +28,13 @@ public class QRCode {
 	private static String line;
 	private static boolean isConnected=true;
 	private static Robot robot;
-	private static final int SERVER_PORT = 8998;
+	private static final int SERVER_PORT = 11258;
         private String ipAddress;
         static InterfaceAddress addr;
 
 public static void actions(){
                     try{
+                        isConnected=true;
 	    		robot = new Robot();
 			server = new ServerSocket(SERVER_PORT); //Create a server socket on port 8998
 			client = server.accept(); //Listens for a connection to be made to this socket and accepts it
@@ -56,10 +59,9 @@ public static void actions(){
                     String url = parts[1];
                     
                     System.out.println("The url is: "+url);
-//                    URLConnection myURLConnection = myURL.openConnection();
-//                    myURLConnection.connect();
-                  
-Runtime rt = Runtime.getRuntime();
+//                    Desktop desktop = Desktop.getDesktop();
+//                    desktop.browse(URI.create(url));
+                    Runtime rt = Runtime.getRuntime();
                     rt.exec( "rundll32 url.dll,FileProtocolHandler " + url);
                         }else if(line.equalsIgnoreCase("went_back")){
                                 isConnected = false;

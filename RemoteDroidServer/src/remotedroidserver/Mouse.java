@@ -30,12 +30,13 @@ public class Mouse {
 	private static String line;
 	private static boolean isConnected=true;
 	private static Robot robot;
-	private static final int SERVER_PORT = 8998;
+	private static final int SERVER_PORT = 11258;
         private String ipAddress;
         static InterfaceAddress addr;
 
 public static void actions(){
                     try{
+                        isConnected=true;
 	    		robot = new Robot();
 			server = new ServerSocket(SERVER_PORT); //Create a server socket on port 8998
 			client = server.accept(); //Listens for a connection to be made to this socket and accepts it
@@ -97,16 +98,16 @@ public static void actions(){
                         }
                 else if(line.contains("copy")){
 				                
-                    robot.keyPress(KeyEvent.VK_SHIFT);
+                    robot.keyPress(KeyEvent.VK_CONTROL);
                     robot.keyPress(KeyEvent.VK_C);
                     robot.keyRelease(KeyEvent.VK_C);
-                    robot.keyRelease(KeyEvent.VK_SHIFT);
+                    robot.keyRelease(KeyEvent.VK_CONTROL);
 			}
                 else if(line.contains("paste")){
-                    robot.keyPress(KeyEvent.VK_SHIFT);
+                    robot.keyPress(KeyEvent.VK_CONTROL);
                     robot.keyPress(KeyEvent.VK_V);
                     robot.keyRelease(KeyEvent.VK_V);
-                    robot.keyRelease(KeyEvent.VK_SHIFT);			
+                    robot.keyRelease(KeyEvent.VK_CONTROL);			
                 }else if(line.equalsIgnoreCase("openKeyboard")){
                                 isConnected = false;
                                 Keyboard keyboard = new Keyboard();
@@ -121,7 +122,7 @@ public static void actions(){
                                 serv.actions();
                         }
                         
-                        
+                       
                         
                 }catch (IOException e) {
 				System.out.println("Read failed");

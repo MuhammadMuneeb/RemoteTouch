@@ -1,6 +1,7 @@
 package org.innoversetech.remotetouch;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -31,6 +32,8 @@ public class GamePad extends AppCompatActivity implements View.OnClickListener, 
     Button mButton2;
     Button mButton3;
     Button mButton4;
+    Button mSelect;
+    Button mStart;
     Constants constants = new Constants();
     //For connection stuff
     private boolean isConnected=false;
@@ -46,12 +49,16 @@ public class GamePad extends AppCompatActivity implements View.OnClickListener, 
         mButton2 = (Button)findViewById(R.id.but2);
         mButton3 = (Button)findViewById(R.id.but3);
         mButton4 = (Button)findViewById(R.id.but4);
+        mSelect= (Button)findViewById(R.id.select);
+        mStart = (Button)findViewById(R.id.start);
         //Set listeners
 
         mButton1.setOnClickListener(this);
         mButton2.setOnClickListener(this);
         mButton3.setOnClickListener(this);
         mButton4.setOnClickListener(this);
+        mSelect.setOnClickListener(this);
+        mStart.setOnClickListener(this);
 
         final ActionView actionView = (ActionView) findViewById(R.id.viewAction);
         actionView.setOnButtonListener(new InputView.InputEventListener(){
@@ -62,12 +69,16 @@ public class GamePad extends AppCompatActivity implements View.OnClickListener, 
                 if (isConnected && out != null) {// if the bit on position i is set
                     if (((0x01 << 1) & buttons) > 0) {
                         out.println(Constants.key_x);
+                        System.out.println(Constants.key_x);
                     } else if (((0x01 << 2) & buttons) > 1) {
                         out.println(Constants.key_y);
+                        System.out.println(Constants.key_y);
                     } else if (((0x01 << 3) & buttons) > 2) {
                         out.println(Constants.key_z);
+                        System.out.println(Constants.key_z);
                     } else if (((0x01 << 0) & buttons) ==0) {
                         out.println(Constants.key_v);
+                        System.out.println(Constants.key_v);
                     }
                 }
             }
@@ -105,11 +116,14 @@ public class GamePad extends AppCompatActivity implements View.OnClickListener, 
             case R.id.select:
                 if(isConnected && out != null){
                     out.println(Constants.key_back);
+                    System.out.println(Constants.key_back);
+
                 }
                 break;
             case R.id.start:
                 if(isConnected && out != null){
                     out.println(Constants.key_enter);
+                    System.out.println(Constants.key_enter);
                 }
                 break;
 
@@ -146,10 +160,14 @@ public class GamePad extends AppCompatActivity implements View.OnClickListener, 
     @Override
     public void onBackPressed(){
         super.onBackPressed();
+        Intent intent = new Intent(GamePad.this, MainActivity.class);
+        startActivity(intent);
         try {
             if (isConnected && out != null) {
                 out.println("went_back");
                 socket.close();
+                startActivity(intent);
+                finish();
             }
         } catch (NullPointerException n) {
             System.out.println("I am null in gamepad");

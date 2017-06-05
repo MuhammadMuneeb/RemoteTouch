@@ -37,7 +37,7 @@ public class Server {
 	private static String line;
 	private static boolean isConnected=true;
 	private static Robot robot;
-	private static final int SERVER_PORT = 8998;
+	private static final int SERVER_PORT = 11258;
         private String ipAddress;
         static InterfaceAddress addr;
         
@@ -127,12 +127,12 @@ private TreeSet<String> getIpAddressList() {
     //Prepare to make connections
     public static void actions(){
                     try{
-                        System.out.println("Lel");
 	    		robot = new Robot();
                         isConnected = true;
 			server = new ServerSocket(SERVER_PORT); //Create a server socket on port 8998
 			client = server.accept(); //Listens for a connection to be made to this socket and accepts it
-			in = new BufferedReader(new InputStreamReader(client.getInputStream())); //the input stream where data will come from client
+			System.out.println("Running");
+                        in = new BufferedReader(new InputStreamReader(client.getInputStream())); //the input stream where data will come from client
 		}catch (IOException e) {
 			System.out.println(e.getMessage());
 			System.exit(-1);
@@ -151,36 +151,35 @@ private TreeSet<String> getIpAddressList() {
 			System.out.println(line); //print whatever we get from client
 			//Keyboard functions
                         if(line.equalsIgnoreCase("keyboard")){
-                            Keyboard key = new Keyboard();
-                            client.close();
-                            server.close();
-                           isConnected = false;
-                           System.out.println("Keyboard bitch");
-                            key.actions();
+                                isConnected = false;
+                                Keyboard keyboard = new Keyboard();
+                                client.close();
+                                server.close();
+                                System.out.println("Heading for keyboard");
+                                keyboard.actions();
                         }
                         else if(line.equalsIgnoreCase("mouse")){
-                            Mouse mouse = new Mouse();
-                            client.close();
-                            server.close();
-                            isConnected = false;
-                            System.out.println("Mouse bitch");
-
-                            mouse.actions();
+                                isConnected = false;
+                                Mouse mouse = new Mouse();
+                                client.close();
+                                server.close();
+                                System.out.println("Heading for mouse");
+                                mouse.actions();
                                 
                         }
                         else if(line.equalsIgnoreCase("gamepad")){
+                            isConnected = false;
                             Gamepad gp = new Gamepad();
                             client.close();
                             server.close();
-                            isConnected = false;
                             System.out.println("Gamepad");
                             gp.actions();
                         }
                         else if(line.equalsIgnoreCase("qrscanner")){
+                            isConnected = false;
                             QRCode qr = new QRCode();
                             client.close();
                             server.close();
-                            isConnected = false;
                             System.out.println("QRScanner");
                             qr.actions();
                         }else if(line.equalsIgnoreCase("exit")){
@@ -191,9 +190,9 @@ private TreeSet<String> getIpAddressList() {
                         }
                         
                 }catch(NullPointerException n){
-                    System.out.println(n.getMessage()+" IDK WHY");
+                    System.out.println(n.getMessage()+n.getCause());
                 }catch(IOException i){
-                    System.out.println(i.getCause()+" IDK WHY"+ i.getMessage());
+                    System.out.println(i.getCause()+ i.getMessage());
                 }
             
             }            
@@ -216,15 +215,9 @@ private TreeSet<String> getIpAddressList() {
                     }
                 }
                 System.out.println("YourIP is:" +yourIP);
-                JOptionPane.showMessageDialog(null, "Enter this IP on your fone: "+yourIP);
+                JOptionPane.showMessageDialog(null, "Enter this IP on your Phone: "+yourIP);
                 actions();
         }
     
-    void setIsConnected(Boolean incon){
-        isConnected=incon;
-    }
     
-    boolean getIsConnected(){
-        return isConnected;
-    }
 }

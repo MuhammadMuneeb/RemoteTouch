@@ -121,10 +121,13 @@ public class qrScanner extends AppCompatActivity {
     @Override
     public void onBackPressed(){
         super.onBackPressed();
+        Intent intent = new Intent(qrScanner.this, MainActivity.class);
         try {
             if (isConnected && out != null) {
                 out.println("went_back");
                 socket.close();
+                startActivity(intent);
+                finish();
             }
         } catch (NullPointerException n) {
             System.out.println("I am null in qr scanner");

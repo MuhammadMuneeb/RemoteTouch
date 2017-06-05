@@ -3,7 +3,7 @@ package org.innoversetech.remotetouch;
 
 public class Constants {
     private static String Ip;
-    public static final int SERVER_PORT = 8998;
+    public static final int SERVER_PORT = 11258;
     private boolean isConnected;
 
     public boolean isConnected() {
@@ -113,12 +113,12 @@ public class Constants {
     public static final String key_curlyBrackOp= "{";
     public static final String key_sqBrackClose= "]";
     public static final String key_curlyBrackClose= "}";
-    public static final String key_backSlash= "\\";
+    public static final String key_backSlash= "backSlash";
     public static final String key_StickThing= "|";
     public static final String key_semicolon= ";";
     public static final String key_colon= ":";
     public static final String key_quote= "'";
-    public static final String key_dblQuote= "\"";
+    public static final String key_dblQuote= "dblQuote";
     public static final String key_comma= ",";
     public static final String key_openTag= "<";
     public static final String key_period= ".";

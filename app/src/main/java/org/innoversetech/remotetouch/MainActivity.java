@@ -91,6 +91,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 if(isConnected){
                     out.println("mouse");
                     startActivity(intent);
+
                 }
                 else{
                     Toast.makeText(context, "Connect your device to use", Toast.LENGTH_SHORT).show();
@@ -101,6 +102,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 if(isConnected){
                     out.println("qrScanner");
                     startActivity(in2);
+
                 }
                 else{
                     Toast.makeText(context, "Connect your device to use", Toast.LENGTH_SHORT).show();
@@ -111,6 +113,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 if(isConnected){
                     out.println("keyboard");
                     startActivity(in3);
+
                 }
                 else{
                     Toast.makeText(context, "Connect your device to use", Toast.LENGTH_SHORT).show();
@@ -121,6 +124,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 if(isConnected){
                     out.println("gamepad");
                     startActivity(in4);
+
                 }
                 else{
                     Toast.makeText(context, "Connect your device to use", Toast.LENGTH_SHORT).show();
