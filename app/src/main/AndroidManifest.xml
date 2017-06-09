@@ -31,7 +31,8 @@
         <activity android:name=".qrScanner" />
         <activity android:name=".Mouse" />
         <activity android:name=".Keyboard" />
-        <activity android:name=".GamePad" />
+        <activity android:name=".GamePad"
+            android:screenOrientation="landscape"/>
         <activity android:name=".BarCodeCaptureActivity"></activity>
     </application>
 

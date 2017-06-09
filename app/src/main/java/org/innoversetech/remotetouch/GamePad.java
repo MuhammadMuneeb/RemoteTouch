@@ -68,16 +68,16 @@ public class GamePad extends AppCompatActivity implements View.OnClickListener, 
                 int i = 0;
                 if (isConnected && out != null) {// if the bit on position i is set
                     if (((0x01 << 1) & buttons) > 0) {
-                        out.println(Constants.key_x);
+                        out.println(Constants.key_i);
                         System.out.println(Constants.key_x);
                     } else if (((0x01 << 2) & buttons) > 1) {
-                        out.println(Constants.key_y);
+                        out.println(Constants.key_o);
                         System.out.println(Constants.key_y);
                     } else if (((0x01 << 3) & buttons) > 2) {
-                        out.println(Constants.key_z);
+                        out.println(Constants.key_k);
                         System.out.println(Constants.key_z);
                     } else if (((0x01 << 0) & buttons) ==0) {
-                        out.println(Constants.key_v);
+                        out.println(Constants.key_l);
                         System.out.println(Constants.key_v);
                     }
                 }

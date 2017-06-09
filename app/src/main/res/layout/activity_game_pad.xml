@@ -14,97 +14,87 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_margin="10sp"
-        android:weightSum="100"
-        android:id="@+id/row1">
+        android:id="@+id/row1"
+
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true">
 
         <Button
             android:id="@+id/but1"
-            android:layout_width="0sp"
+            android:layout_width="150sp"
             android:layout_height="wrap_content"
-            android:layout_weight="50"
-            android:text="Button" />
+            android:text="Button"
+            android:layout_marginLeft="100sp"/>
 
         <Button
             android:id="@+id/but2"
-            android:layout_width="0sp"
+            android:layout_width="150sp"
             android:layout_height="wrap_content"
             android:layout_gravity="right"
             android:text="Button"
-            android:layout_weight="50"/>
+            android:layout_marginLeft="90sp"/>
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_margin="10sp"
-        android:weightSum="100"
         android:id="@+id/row2"
         android:layout_below="@id/row1">
 
         <Button
             android:id="@+id/but3"
-            android:layout_width="0sp"
+            android:layout_width="150sp"
             android:layout_height="wrap_content"
             android:text="Button"
-            android:layout_weight="50"/>
+            android:layout_marginLeft="100sp"/>
 
         <Button
             android:id="@+id/but4"
-            android:layout_width="0sp"
+            android:layout_width="150sp"
             android:layout_height="wrap_content"
+            android:layout_gravity="right"
             android:text="Button"
-            android:layout_weight="50"/>
+            android:layout_marginLeft="90sp"/>
 
             </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_margin="30sp"
-        android:weightSum="100"
-        android:id="@+id/row3"
-        android:layout_below="@id/row2">
-
-
-        <Button
-            android:id="@+id/select"
-            android:layout_weight="50"
-            android:layout_width="0sp"
-            android:layout_height="wrap_content"
-            android:text="Select" />
-
-        <Button
-            android:id="@+id/start"
-            android:layout_weight="50"
-            android:layout_width="0sp"
-            android:layout_height="wrap_content"
-            android:text="Start" />
-        </LinearLayout>
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:orientation="horizontal"
-        android:weightSum="100"
-        android:layout_below="@id/row3"
-        android:layout_margin="10sp">
+        android:layout_below="@id/row2"
+        android:layout_marginLeft="40sp"
+        android:layout_marginTop="30sp"
+        >
         <com.andretietz.android.controller.DirectionView
             android:id="@+id/viewDirection"
-            android:layout_width="0sp"
-            android:layout_weight="50"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"/>
 
+        <Button
+            android:id="@+id/select"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Select"
+            android:layout_margin="10sp"/>
+
+        <Button
+            android:id="@+id/start"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Start"
+            android:layout_margin="10sp"/>
+
+
         <com.andretietz.android.controller.ActionView
             android:id="@+id/viewAction"
-            android:layout_width="0sp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="50"
             android:layout_alignParentBottom="true"
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true" />
