@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="org.innoversetech.remotetouch">
+    package="org.androidpccontroller.remotetouch">
 
     <uses-feature
         android:name="android.hardware.camera"
@@ -17,7 +17,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name="org.androidpccontroller.remotetouch.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -28,12 +28,12 @@
                 android:name="com.google.android.gms.vision.DEPENDENCIES"
                 android:value="barcode" />
         </activity>
-        <activity android:name=".qrScanner" />
-        <activity android:name=".Mouse" />
-        <activity android:name=".Keyboard" />
-        <activity android:name=".GamePad"
+        <activity android:name="org.androidpccontroller.remotetouch.qrScanner" />
+        <activity android:name="org.androidpccontroller.remotetouch.Mouse" />
+        <activity android:name="org.androidpccontroller.remotetouch.Keyboard" />
+        <activity android:name="org.androidpccontroller.remotetouch.GamePad"
             android:screenOrientation="landscape"/>
-        <activity android:name=".BarCodeCaptureActivity"></activity>
+        <activity android:name="org.androidpccontroller.remotetouch.BarCodeCaptureActivity"></activity>
     </application>
 
 </manifest>

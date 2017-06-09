@@ -1,4 +1,4 @@
-package org.innoversetech.remotetouch;
+package org.androidpccontroller.remotetouch;
 
 import org.junit.Test;
 

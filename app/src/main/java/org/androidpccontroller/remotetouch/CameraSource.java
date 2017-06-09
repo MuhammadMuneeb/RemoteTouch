@@ -1,4 +1,4 @@
-package org.innoversetech.remotetouch;
+package org.androidpccontroller.remotetouch;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
