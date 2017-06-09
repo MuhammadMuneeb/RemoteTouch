@@ -26,10 +26,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author MMHaq
- */
 public class Server {
     private static ServerSocket server = null;
 	private static Socket client = null;
