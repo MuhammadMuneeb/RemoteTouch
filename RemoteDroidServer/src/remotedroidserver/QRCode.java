@@ -17,10 +17,6 @@ import java.net.Socket;
 import java.net.URI;
 import java.net.URLConnection;
 
-/**
- *
- * @author MMHaq
- */
 public class QRCode {
               private static ServerSocket server = null;
 	private static Socket client = null;

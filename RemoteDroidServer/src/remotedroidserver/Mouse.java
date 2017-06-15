@@ -18,10 +18,6 @@ import java.net.InterfaceAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
 
-/**
- *
- * @author MMHaq
- */
 public class Mouse {
     
            private static ServerSocket server = null;

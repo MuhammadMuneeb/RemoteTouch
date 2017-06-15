@@ -15,10 +15,6 @@ import java.net.InterfaceAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
 
-/**
- *
- * @author MMHaq
- */
 public class Gamepad {
            private static ServerSocket server = null;
 	private static Socket client = null;
