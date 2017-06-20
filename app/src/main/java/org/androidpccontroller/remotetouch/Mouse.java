@@ -12,6 +12,7 @@ import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -98,9 +99,16 @@ public class Mouse extends ActionBarActivity implements View.OnClickListener {
                     }
                 }
                 return true;
+
             }
         });
 
+        scrollView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                out.println(Constants.MOUSE_LEFT_CLICK);
+            }
+        });
         mScroller.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {

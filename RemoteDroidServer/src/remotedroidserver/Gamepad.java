@@ -4,7 +4,6 @@
  * and open the template in the editor.
  */
 package remotedroidserver;
-
 import java.awt.AWTException;
 import java.awt.Robot;
 import java.awt.event.KeyEvent;
@@ -25,12 +24,16 @@ public class Gamepad {
 	private static final int SERVER_PORT = 11258;
         private String ipAddress;
         static InterfaceAddress addr;
+        static int duration = 3000;
+         static long start = System.currentTimeMillis();
 
-public static void actions(){
+    public static void actions() throws InterruptedException{
                     try{
                         isConnected = true;
 	    		robot = new Robot();
-			server = new ServerSocket(SERVER_PORT); //Create a server socket on port 8998
+                robot.setAutoDelay(1);
+               
+                        server = new ServerSocket(SERVER_PORT); //Create a server socket on port 8998
 			client = server.accept(); //Listens for a connection to be made to this socket and accepts it
 			in = new BufferedReader(new InputStreamReader(client.getInputStream())); //the input stream where data will come from client
 		}catch (IOException e) {
@@ -51,17 +54,13 @@ public static void actions(){
                         		//Keyboard functions
                         
                         //small alphabets
-			if(line.equalsIgnoreCase("q")){
-				//Simulate press and release of key 'q'
-				robot.keyPress(KeyEvent.VK_Q);
-				robot.keyRelease(KeyEvent.VK_Q);
-			}
-			
-			else if(line.equalsIgnoreCase("w")){
-				//Simulate press and release of key 'w'
-				robot.keyPress(KeyEvent.VK_W);
-				robot.keyRelease(KeyEvent.VK_W);		        	
-			}
+			 if(line.equalsIgnoreCase("w")){
+                    //Simulate press and release of key 'w'
+                    robot.keyPress(KeyEvent.VK_W); 
+                    
+                    Thread.sleep(700);
+                    robot.keyRelease(KeyEvent.VK_W);
+                	}
                         else if(line.equalsIgnoreCase("e")){
 				//Simulate press and release of key 'e'
 				robot.keyPress(KeyEvent.VK_E);
@@ -105,16 +104,19 @@ public static void actions(){
                         else if(line.equalsIgnoreCase("a")){
 				//Simulate press and release of key 'a'
 				robot.keyPress(KeyEvent.VK_A);
-				robot.keyRelease(KeyEvent.VK_A);		        	
+				Thread.sleep(500);
+                                robot.keyRelease(KeyEvent.VK_A);		        	
 			}
                         else if(line.equalsIgnoreCase("s")){
 				//Simulate press and release of key 's'
 				robot.keyPress(KeyEvent.VK_S);
-				robot.keyRelease(KeyEvent.VK_S);		        	
+				Thread.sleep(500);
+                                robot.keyRelease(KeyEvent.VK_S);		        	
 			}
                         else if(line.equalsIgnoreCase("d")){
 				//Simulate press and release of key 'd'
 				robot.keyPress(KeyEvent.VK_D);
+                                Thread.sleep(500);
 				robot.keyRelease(KeyEvent.VK_D);		        	
 			}else if(line.equalsIgnoreCase("f")){
 				//Simulate press and release of key 'f'

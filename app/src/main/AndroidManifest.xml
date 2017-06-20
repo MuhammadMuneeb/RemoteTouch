@@ -30,7 +30,9 @@
         </activity>
         <activity android:name="org.androidpccontroller.remotetouch.qrScanner" />
         <activity android:name="org.androidpccontroller.remotetouch.Mouse" />
-        <activity android:name="org.androidpccontroller.remotetouch.Keyboard" />
+        <activity android:name="org.androidpccontroller.remotetouch.Keyboard"
+            android:windowSoftInputMode = "stateVisible"
+            />
         <activity android:name="org.androidpccontroller.remotetouch.GamePad"
             android:screenOrientation="landscape"/>
         <activity android:name="org.androidpccontroller.remotetouch.BarCodeCaptureActivity"></activity>
